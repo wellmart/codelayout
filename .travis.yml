@@ -4,4 +4,5 @@ sudo: required
 osx_image: xcode11.2
 
 script:
-  - swift build
+  - swift package generate-xcodeproj
+  - xcodebuild -sdk iphonesimulator -enableCodeCoverage YES clean build
