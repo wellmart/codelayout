@@ -68,42 +68,42 @@ public extension UIView {
 public extension UIView {
     @inlinable
     func anchorTop(topOf view: UIView, constant: CGFloat = 0) {
-        _ = topAnchor.constraint(equalTo: view.topAnchor, constant: constant)
+        topAnchor.constraint(equalTo: view.topAnchor, constant: constant).isActive = true
     }
     
     @inlinable
     func anchorTop(bottomOf view: UIView, constant: CGFloat = 0) {
-        _ = topAnchor.constraint(equalTo: view.bottomAnchor, constant: constant)
+        topAnchor.constraint(equalTo: view.bottomAnchor, constant: constant).isActive = true
     }
     
     @inlinable
     func anchorRight(rightOf view: UIView, constant: CGFloat = 0) {
-        _ = rightAnchor.constraint(equalTo: view.rightAnchor, constant: constant)
+        rightAnchor.constraint(equalTo: view.rightAnchor, constant: constant).isActive = true
     }
     
     @inlinable
     func anchorRight(leftOf view: UIView, constant: CGFloat = 0) {
-        _ = rightAnchor.constraint(equalTo: view.leftAnchor, constant: constant)
+        rightAnchor.constraint(equalTo: view.leftAnchor, constant: constant).isActive = true
     }
     
     @inlinable
     func anchorBottom(topOf view: UIView, constant: CGFloat = 0) {
-        _ = bottomAnchor.constraint(equalTo: view.topAnchor, constant: constant)
+        bottomAnchor.constraint(equalTo: view.topAnchor, constant: constant).isActive = true
     }
     
     @inlinable
     func anchorBottom(bottomOf view: UIView, constant: CGFloat = 0) {
-        _ = bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: constant)
+        bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: constant).isActive = true
     }
     
     @inlinable
     func anchorLeft(rightOf view: UIView, constant: CGFloat = 0) {
-        _ = leftAnchor.constraint(equalTo: view.rightAnchor, constant: constant)
+        leftAnchor.constraint(equalTo: view.rightAnchor, constant: constant).isActive = true
     }
     
     @inlinable
     func anchorLeft(leftOf view: UIView, constant: CGFloat = 0) {
-        _ = leftAnchor.constraint(equalTo: view.leftAnchor, constant: constant)
+        leftAnchor.constraint(equalTo: view.leftAnchor, constant: constant).isActive = true
     }
 }
 
