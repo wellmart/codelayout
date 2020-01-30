@@ -24,13 +24,13 @@
 
 import UIKit
 
-public protocol UISimplePageChildController: UIViewController {
+public protocol SimplePageChildControllerProtocol: UIViewController {
     init()
     
     func prepare(for index: Int)
 }
 
-open class UISimplePageController<T: UISimplePageChildController>: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+open class UISimplePageController<T: SimplePageChildControllerProtocol>: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     private var currentIndex = 0
     private lazy var indexes = [T: Int](reserveCapacity: 3)
     
