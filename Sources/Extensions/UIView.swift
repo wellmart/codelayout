@@ -67,43 +67,111 @@ public extension UIView {
 
 public extension UIView {
     @inlinable
-    func anchorTop(topOf view: UIView, constant: CGFloat = 0) {
-        topAnchor.constraint(equalTo: view.topAnchor, constant: constant).isActive = true
+    @discardableResult
+    func anchor(top constant: CGFloat) -> NSLayoutConstraint {
+        return anchor(top: superview!.topAnchor, constant: constant)
     }
     
     @inlinable
-    func anchorTop(bottomOf view: UIView, constant: CGFloat = 0) {
-        topAnchor.constraint(equalTo: view.bottomAnchor, constant: constant).isActive = true
+    @discardableResult
+    func anchor(top anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return topAnchor.constraint(equalTo: anchor, constant: constant).apply {
+            $0.isActive = true
+        }
     }
     
     @inlinable
-    func anchorRight(rightOf view: UIView, constant: CGFloat = 0) {
-        rightAnchor.constraint(equalTo: view.rightAnchor, constant: constant).isActive = true
+    @discardableResult
+    func anchor(right constant: CGFloat) -> NSLayoutConstraint {
+        return anchor(right: superview!.rightAnchor, constant: constant)
     }
     
     @inlinable
-    func anchorRight(leftOf view: UIView, constant: CGFloat = 0) {
-        rightAnchor.constraint(equalTo: view.leftAnchor, constant: constant).isActive = true
+    @discardableResult
+    func anchor(right anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return rightAnchor.constraint(equalTo: anchor, constant: -constant).apply {
+            $0.isActive = true
+        }
     }
     
     @inlinable
-    func anchorBottom(topOf view: UIView, constant: CGFloat = 0) {
-        bottomAnchor.constraint(equalTo: view.topAnchor, constant: constant).isActive = true
+    @discardableResult
+    func anchor(bottom constant: CGFloat) -> NSLayoutConstraint {
+        return anchor(bottom: superview!.bottomAnchor, constant: constant)
     }
     
     @inlinable
-    func anchorBottom(bottomOf view: UIView, constant: CGFloat = 0) {
-        bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: constant).isActive = true
+    @discardableResult
+    func anchor(bottom anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return bottomAnchor.constraint(equalTo: anchor, constant: -constant).apply {
+            $0.isActive = true
+        }
     }
     
     @inlinable
-    func anchorLeft(rightOf view: UIView, constant: CGFloat = 0) {
-        leftAnchor.constraint(equalTo: view.rightAnchor, constant: constant).isActive = true
+    @discardableResult
+    func anchor(left constant: CGFloat) -> NSLayoutConstraint {
+        return anchor(left: superview!.leftAnchor, constant: constant)
     }
     
     @inlinable
-    func anchorLeft(leftOf view: UIView, constant: CGFloat = 0) {
-        leftAnchor.constraint(equalTo: view.leftAnchor, constant: constant).isActive = true
+    @discardableResult
+    func anchor(left anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return leftAnchor.constraint(equalTo: anchor, constant: constant).apply {
+            $0.isActive = true
+        }
+    }
+    
+    @inlinable
+    @discardableResult
+    func anchor(width constant: CGFloat) -> NSLayoutConstraint {
+        return widthAnchor.constraint(equalToConstant: constant).apply {
+            $0.isActive = true
+        }
+    }
+    
+    @inlinable
+    @discardableResult
+    func anchor(width anchor: NSLayoutDimension, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return widthAnchor.constraint(equalTo: anchor, constant: -constant).apply {
+            $0.isActive = true
+        }
+    }
+    
+    @inlinable
+    @discardableResult
+    func anchor(height constant: CGFloat) -> NSLayoutConstraint {
+        return heightAnchor.constraint(equalToConstant: constant).apply {
+            $0.isActive = true
+        }
+    }
+    
+    @inlinable
+    @discardableResult
+    func anchor(height anchor: NSLayoutDimension, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return heightAnchor.constraint(equalTo: anchor, constant: -constant).apply {
+            $0.isActive = true
+        }
+    }
+    
+    @inlinable
+    func anchor(centerX constant: CGFloat) {
+        anchor(centerX: superview!.centerXAnchor, constant: constant)
+    }
+    
+    @inlinable
+    func anchor(centerX anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) {
+        centerXAnchor.constraint(equalTo: anchor, constant: constant).isActive = true
+    }
+    
+    @inlinable
+    func anchor(centerY constant: CGFloat) {
+        anchor(centerY: superview!.centerYAnchor, constant: constant)
+    }
+    
+    @inlinable
+    func anchor(centerY anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) {
+        centerYAnchor.constraint(equalTo: anchor, constant: constant).isActive = true
     }
 }
 
