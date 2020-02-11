@@ -73,7 +73,7 @@ open class UISimplePageController<T: SimplePageChildControllerProtocol>: UIPageV
         currentIndex = index
     }
     
-    open func prepare(childController: T) {
+    open func load(childController: T) {
     }
     
     public func reset(currentIndex: Int = 0) {
@@ -101,7 +101,7 @@ open class UISimplePageController<T: SimplePageChildControllerProtocol>: UIPageV
         }
         
         let viewController = indexes.first(where: { $0.value < currentIndex - 1 || $0.value > currentIndex + 1 })?.key ?? T().apply {
-            prepare(childController: $0)
+            load(childController: $0)
         }
         
         viewController.prepare(for: index)
