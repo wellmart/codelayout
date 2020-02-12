@@ -65,6 +65,7 @@ public extension UIView {
     }
 }
 
+@available(iOS 9, *)
 public extension UIView {
     @inlinable
     @discardableResult

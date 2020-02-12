@@ -24,6 +24,7 @@
 
 import UIKit
 
+@available(iOS 10, *)
 public enum ImpactUtils {
     @usableFromInline
     static let selectionFeedback = UISelectionFeedbackGenerator()

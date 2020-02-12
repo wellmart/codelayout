@@ -24,6 +24,7 @@
 
 import UIKit
 
+@available(iOS 10, *)
 public extension UIColor {
     @inlinable
     func image(_ size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {

@@ -26,10 +26,10 @@ import UIKit
 
 public extension UIWindow {
     @inlinable
-    convenience init(navigationRootViewController: UIViewController) {
+    convenience init(rootViewController: UIViewController) {
         self.init(frame: UIScreen.main.bounds)
         
-        self.rootViewController = UINavigationController(rootViewController: navigationRootViewController)
+        self.rootViewController = rootViewController
         self.makeKeyAndVisible()
     }
 }

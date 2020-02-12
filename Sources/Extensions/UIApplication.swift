@@ -24,6 +24,7 @@
 
 import UIKit
 
+@available(iOS 10, *)
 public extension UIApplication {
     @inlinable
     static func openSettings() {
