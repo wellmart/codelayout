@@ -37,7 +37,23 @@ public extension UICollectionView {
     }
     
     @inlinable
+    func dequeue<T: UICollectionReusableView & ViewReusable>(_ type: T.Type, for indexPath: IndexPath, with viewModel: T.T?) -> T {
+        let view = dequeueReusableSupplementaryView(ofKind: T.identifier, withReuseIdentifier: T.identifier, for: indexPath) as! T
+        
+        if let viewModel = viewModel {
+            return view.prepare(viewModel: viewModel)
+        }
+        
+        return view
+    }
+    
+    @inlinable
     func register<T: UICollectionViewCell & ViewReusable>(_ type: T.Type) {
         register(type, forCellWithReuseIdentifier: T.identifier)
+    }
+    
+    @inlinable
+    func register<T: UICollectionReusableView & ViewReusable>(_ type: T.Type) {
+        register(type, forSupplementaryViewOfKind: T.identifier, withReuseIdentifier: T.identifier)
     }
 }
