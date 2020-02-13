@@ -30,7 +30,7 @@ public extension UICollectionView {
         let cell = dequeueReusableCell(withReuseIdentifier: T.identifier, for: indexPath) as! T
         
         if let viewModel = viewModel {
-            return cell.prepare(viewModel: viewModel)
+            cell.prepare(viewModel: viewModel)
         }
         
         return cell
@@ -41,7 +41,7 @@ public extension UICollectionView {
         let view = dequeueReusableSupplementaryView(ofKind: kind ?? T.identifier, withReuseIdentifier: T.identifier, for: indexPath) as! T
         
         if let viewModel = viewModel {
-            return view.prepare(viewModel: viewModel)
+            view.prepare(viewModel: viewModel)
         }
         
         return view
@@ -55,5 +55,14 @@ public extension UICollectionView {
     @inlinable
     func register<T: UICollectionReusableView & ViewReusable>(_ type: T.Type, forKind kind: String? = nil) {
         register(type, forSupplementaryViewOfKind: kind ?? T.identifier, withReuseIdentifier: T.identifier)
+    }
+    
+    @inlinable
+    func reloadDataAndScrollTop() {
+        reloadData()
+        
+        if numberOfItems(inSection: 0) != 0 {
+            scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
     }
 }

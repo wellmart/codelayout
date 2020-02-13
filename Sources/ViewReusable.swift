@@ -29,5 +29,5 @@ public protocol ViewReusable: UIView {
     
     static var identifier: String { get }
     
-    func prepare(viewModel: T) -> Self
+    func prepare(viewModel: T)
 }

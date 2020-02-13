@@ -62,6 +62,6 @@ public class UICollectionSimpleDataSource<T>: NSObject, UICollectionViewDataSour
     
     public func apply(items: [T]?) {
         self.items = items
-        collectionView?.reloadData()
+        collectionView?.reloadDataAndScrollTop()
     }
 }
