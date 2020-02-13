@@ -37,8 +37,8 @@ public extension UICollectionView {
     }
     
     @inlinable
-    func dequeue<T: UICollectionReusableView & ViewReusable>(_ type: T.Type, for indexPath: IndexPath, with viewModel: T.T?) -> T {
-        let view = dequeueReusableSupplementaryView(ofKind: T.identifier, withReuseIdentifier: T.identifier, for: indexPath) as! T
+    func dequeue<T: UICollectionReusableView & ViewReusable>(_ type: T.Type, ofKind kind: String? = nil, for indexPath: IndexPath, with viewModel: T.T?) -> T {
+        let view = dequeueReusableSupplementaryView(ofKind: kind ?? T.identifier, withReuseIdentifier: T.identifier, for: indexPath) as! T
         
         if let viewModel = viewModel {
             return view.prepare(viewModel: viewModel)
@@ -53,7 +53,7 @@ public extension UICollectionView {
     }
     
     @inlinable
-    func register<T: UICollectionReusableView & ViewReusable>(_ type: T.Type) {
-        register(type, forSupplementaryViewOfKind: T.identifier, withReuseIdentifier: T.identifier)
+    func register<T: UICollectionReusableView & ViewReusable>(_ type: T.Type, forKind kind: String? = nil) {
+        register(type, forSupplementaryViewOfKind: kind ?? T.identifier, withReuseIdentifier: T.identifier)
     }
 }

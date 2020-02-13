@@ -25,7 +25,7 @@
 import UIKit
 
 public class UICollectionSimpleDataSource<T>: NSObject, UICollectionViewDataSource {
-    public typealias CellProvider = (UICollectionView, IndexPath, T?) -> UICollectionViewCell
+    public typealias CellProvider = (UICollectionView, IndexPath, T) -> UICollectionViewCell
     public typealias SupplementaryProvider = (UICollectionView, IndexPath, String) -> UICollectionReusableView?
     
     public var supplementaryProvider: SupplementaryProvider?
@@ -33,7 +33,7 @@ public class UICollectionSimpleDataSource<T>: NSObject, UICollectionViewDataSour
     private let cellProvider: CellProvider
     
     private var items: [T]?
-    private var collectionView: UICollectionView?
+    private weak var collectionView: UICollectionView?
     
     public init(cellProvider: @escaping CellProvider) {
         self.cellProvider = cellProvider
@@ -49,7 +49,11 @@ public class UICollectionSimpleDataSource<T>: NSObject, UICollectionViewDataSour
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return cellProvider(collectionView, indexPath, items?[safe: indexPath.row])
+        guard let item = items?[safe: indexPath.row] else {
+            return UICollectionViewCell()
+        }
+        
+        return cellProvider(collectionView, indexPath, item)
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
