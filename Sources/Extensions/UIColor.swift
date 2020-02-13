@@ -24,9 +24,26 @@
 
 import UIKit
 
-@available(iOS 10, *)
 public extension UIColor {
     @inlinable
+    convenience init(red: CGFloat, green: CGFloat, blue: CGFloat) {
+        self.init(red: red, green: green, blue: blue, alpha: 1)
+    }
+    
+    @inlinable
+    convenience init(light: UIColor, dark: UIColor) {
+        if #available(iOS 13, *) {
+            self.init {
+                return $0.userInterfaceStyle != .dark ? light : dark
+            }
+        }
+        else {
+            self.init(cgColor: light.cgColor)
+        }
+    }
+    
+    @inlinable
+    @available(iOS 10, *)
     func image(_ size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
         return UIGraphicsImageRenderer(size: size).image { context in
             self.setFill()
