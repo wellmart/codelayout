@@ -49,7 +49,7 @@ public class UICollectionSimpleDataSource<T>: NSObject, UICollectionViewDataSour
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let item = items?[safe: indexPath.row] else {
+        guard let item = items?[safe: indexPath.item] else {
             return UICollectionViewCell()
         }
         
