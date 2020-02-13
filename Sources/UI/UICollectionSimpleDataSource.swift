@@ -30,14 +30,18 @@ public class UICollectionSimpleDataSource<T>: NSObject, UICollectionViewDataSour
     
     public var supplementaryProvider: SupplementaryProvider?
     
-    private let collectionView: UICollectionView
     private let cellProvider: CellProvider
     
     private var items: [T]?
+    private var collectionView: UICollectionView?
     
-    public init(collectionView: UICollectionView, cellProvider: @escaping CellProvider) {
-        self.collectionView = collectionView
+    public init(cellProvider: @escaping CellProvider) {
         self.cellProvider = cellProvider
+    }
+    
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+        self.collectionView = collectionView
+        return 1
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -54,6 +58,6 @@ public class UICollectionSimpleDataSource<T>: NSObject, UICollectionViewDataSour
     
     public func apply(items: [T]?) {
         self.items = items
-        collectionView.reloadData()
+        collectionView?.reloadData()
     }
 }
