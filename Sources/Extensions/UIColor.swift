@@ -31,6 +31,12 @@ public extension UIColor {
     }
     
     @inlinable
+    convenience init(color: UIColor, adding: CGFloat) {
+        let ci = CIColor(color: color)
+        self.init(red: ci.red + adding, green: ci.green + adding, blue: ci.blue + adding)
+    }
+    
+    @inlinable
     convenience init(light: UIColor, dark: UIColor) {
         if #available(iOS 13, *) {
             self.init {
