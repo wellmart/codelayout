@@ -62,7 +62,7 @@ public extension UICollectionView {
         reloadData()
         
         if numberOfItems(inSection: 0) != 0 {
-            scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+            scrollToItem(at: .zero, at: .top, animated: false)
         }
     }
 }
