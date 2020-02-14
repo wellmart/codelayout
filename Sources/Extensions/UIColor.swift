@@ -26,17 +26,6 @@ import UIKit
 
 public extension UIColor {
     @inlinable
-    convenience init(red: CGFloat, green: CGFloat, blue: CGFloat) {
-        self.init(red: red, green: green, blue: blue, alpha: 1)
-    }
-    
-    @inlinable
-    convenience init(color: UIColor, adding: CGFloat) {
-        let ci = CIColor(color: color)
-        self.init(red: ci.red + adding, green: ci.green + adding, blue: ci.blue + adding)
-    }
-    
-    @inlinable
     convenience init(light: UIColor, dark: UIColor) {
         if #available(iOS 13, *) {
             self.init {
@@ -46,6 +35,25 @@ public extension UIColor {
         else {
             self.init(cgColor: light.cgColor)
         }
+    }
+    
+    @inlinable
+    convenience init(red: CGFloat, green: CGFloat, blue: CGFloat) {
+        self.init(red: red, green: green, blue: blue, alpha: 1)
+    }
+    
+    @inlinable
+    func adjust(hueBy hue: CGFloat = 0, saturationBy saturation: CGFloat = 0, brightnessBy brightness: CGFloat = 0) -> UIColor {
+        var colorHue: CGFloat = 0
+        var colorSaturation: CGFloat = 0
+        var colorBrigthness: CGFloat = 0
+        var colorAlpha: CGFloat = 0
+        
+        if getHue(&colorHue, saturation: &colorSaturation, brightness: &colorBrigthness, alpha: &colorAlpha) {
+            return UIColor(hue: colorHue + hue, saturation: colorSaturation + saturation, brightness: colorBrigthness + brightness, alpha: colorAlpha)
+        }
+        
+        return self
     }
     
     @inlinable
