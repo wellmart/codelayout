@@ -26,7 +26,7 @@ import Foundation
 
 public extension IndexPath {
     @inlinable
-    static var zero: IndexPath {
+    static var start: IndexPath {
         return IndexPath(row: 0, section: 0)
     }
 }
