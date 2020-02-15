@@ -59,7 +59,13 @@ public extension UICollectionView {
     
     @inlinable
     func reloadDataAndScrollTop(animated: Bool = false) {
+        var y: CGFloat = 0
+        
+        if #available(iOS 11, *) {
+            y = -safeAreaInsets.top
+        }
+        
         reloadData()
-        setContentOffset(.zero, animated: animated)
+        setContentOffset(CGPoint(x: 0, y: y), animated: animated)
     }
 }
