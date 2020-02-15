@@ -78,9 +78,9 @@ public extension UIApplication {
     
     @inlinable
     @available(iOS 9, *)
-    var safeAreaLayoutGuide: UILayoutGuide? {
+    var safeAreaInsets: UIEdgeInsets? {
         if #available(iOS 11, *) {
-            return UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaLayoutGuide
+            return UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets
         }
         
         return nil
