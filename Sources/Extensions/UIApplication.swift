@@ -36,8 +36,8 @@ public extension UIApplication {
     }
     
     @inlinable
-    static var preferredContentMultiplier: CGFloat {
-        switch shared.preferredContentSizeCategory {
+    var preferredContentMultiplier: CGFloat {
+        switch preferredContentSizeCategory {
         case .accessibilityExtraExtraExtraLarge:
             return 1.4375
             
@@ -74,5 +74,15 @@ public extension UIApplication {
         default:
             return 1
         }
+    }
+    
+    @inlinable
+    @available(iOS 9, *)
+    var safeAreaLayoutGuide: UILayoutGuide? {
+        if #available(iOS 11, *) {
+            return UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaLayoutGuide
+        }
+        
+        return nil
     }
 }
