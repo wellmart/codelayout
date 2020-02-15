@@ -24,9 +24,14 @@
 
 import UIKit
 
-public extension UIAppearance {
+public extension UIFont {
     @inlinable
-    static func appearance(_ work: (Self) -> Void) {
-        work(appearance())
+    convenience init?(name: String, densitySize size: CGFloat) {
+        self.init(name: name, size: UIScreen.main.bounds.size.width / 320 * size)
+    }
+    
+    @inlinable
+    var adjutedByContentMultiplier: UIFont {
+        return UIFont(descriptor: fontDescriptor, size: pointSize * UIApplication.preferredContentMultiplier)
     }
 }

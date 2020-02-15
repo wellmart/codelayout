@@ -58,11 +58,8 @@ public extension UICollectionView {
     }
     
     @inlinable
-    func reloadDataAndScrollTop() {
+    func reloadDataAndScrollTop(animated: Bool = false) {
         reloadData()
-        
-        if numberOfItems(inSection: 0) != 0 {
-            scrollToItem(at: .start, at: .top, animated: false)
-        }
+        setContentOffset(.zero, animated: animated)
     }
 }
