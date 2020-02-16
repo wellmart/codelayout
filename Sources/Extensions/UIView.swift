@@ -156,23 +156,31 @@ public extension UIView {
     }
     
     @inlinable
-    func anchor(centerX constant: CGFloat) {
-        anchor(centerX: superview!.centerXAnchor, constant: constant)
+    @discardableResult
+    func anchor(centerX constant: CGFloat) -> NSLayoutConstraint {
+        return anchor(centerX: superview!.centerXAnchor, constant: constant)
     }
     
     @inlinable
-    func anchor(centerX anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) {
-        centerXAnchor.constraint(equalTo: anchor, constant: constant).isActive = true
+    @discardableResult
+    func anchor(centerX anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return centerXAnchor.constraint(equalTo: anchor, constant: constant).apply {
+            $0.isActive = true
+        }
     }
     
     @inlinable
-    func anchor(centerY constant: CGFloat) {
-        anchor(centerY: superview!.centerYAnchor, constant: constant)
+    @discardableResult
+    func anchor(centerY constant: CGFloat) -> NSLayoutConstraint {
+        return anchor(centerY: superview!.centerYAnchor, constant: constant)
     }
     
     @inlinable
-    func anchor(centerY anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) {
-        centerYAnchor.constraint(equalTo: anchor, constant: constant).isActive = true
+    @discardableResult
+    func anchor(centerY anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return centerYAnchor.constraint(equalTo: anchor, constant: constant).apply {
+            $0.isActive = true
+        }
     }
 }
 
