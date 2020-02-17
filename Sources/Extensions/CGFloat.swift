@@ -25,8 +25,10 @@
 import UIKit
 
 public extension CGFloat {
+    static let baseDPI: CGFloat = 463
+    
     @inlinable
     var dp: CGFloat {
-        return UIScreen.main.bounds.size.width / 320 * self
+        return UIScreen.main.bounds.size.width / .baseDPI * self
     }
 }

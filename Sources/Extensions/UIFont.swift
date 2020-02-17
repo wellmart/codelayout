@@ -26,11 +26,6 @@ import UIKit
 
 public extension UIFont {
     @inlinable
-    convenience init?(name: String, minimumSize size: CGFloat) {
-        self.init(name: name, size: UIScreen.main.bounds.size.width / 320 * size)
-    }
-    
-    @inlinable
     var adjustedByContentMultiplier: UIFont {
         return UIFont(descriptor: fontDescriptor, size: pointSize * UIApplication.shared.preferredContentMultiplier)
     }
