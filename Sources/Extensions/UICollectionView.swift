@@ -58,14 +58,15 @@ public extension UICollectionView {
     }
     
     @inlinable
-    func reloadDataAndScrollTop(animated: Bool = false, respectSafeArea: Bool = false) {
-        var y: CGFloat = 0
-        
-        if respectSafeArea, #available(iOS 11, *) {
-            y = -safeAreaInsets.top
-        }
-        
+    func reloadDataAndScrollTop(animated: Bool = false) {
         reloadData()
-        setContentOffset(CGPoint(x: 0, y: y), animated: animated)
+        setContentOffset(CGPoint(x: 0, y: 0), animated: animated)
+    }
+    
+    @inlinable
+    @available(iOS 11, *)
+    func reloadDataAndScrollTop(animated: Bool = false, respectSafeArea: Bool = false) {
+        reloadData()
+        setContentOffset(CGPoint(x: 0, y: respectSafeArea ? 0 : -safeAreaInsets.top), animated: animated)
     }
 }
