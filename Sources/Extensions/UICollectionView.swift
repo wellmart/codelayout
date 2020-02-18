@@ -58,7 +58,7 @@ public extension UICollectionView {
     }
     
     @inlinable
-    func reloadDataAndScrollTop(animated: Bool = false, respectSafeArea: Bool = false) {
+    func resetData(animated: Bool = false, respectSafeArea: Bool = false) {
         let y: CGFloat
         
         if #available(iOS 11, *), !respectSafeArea {
