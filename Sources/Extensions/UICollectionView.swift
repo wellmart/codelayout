@@ -63,7 +63,8 @@ public extension UICollectionView {
         
         if #available(iOS 11, *), !respectSafeArea {
             y = -safeAreaInsets.top
-        } else {
+        }
+        else {
             y = 0
         }
         

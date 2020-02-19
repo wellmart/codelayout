@@ -31,6 +31,7 @@ public extension UIView {
     func addSubview<T: UIView>(_ type: T.Type, apply work: (T) -> Void) -> T {
         return T().apply {
             $0.translatesAutoresizingMaskIntoConstraints = false
+            
             addSubview($0)
             work($0)
         }
@@ -41,6 +42,7 @@ public extension UIView {
     func addSubview<T: UIView>(_ view: T, apply work: (T) -> Void) -> T {
         return view.apply {
             $0.translatesAutoresizingMaskIntoConstraints = false
+            
             addSubview($0)
             work($0)
         }
