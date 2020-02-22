@@ -23,6 +23,7 @@
 //
 
 import UIKit
+import Adrenaline
 
 public extension UIWindow {
     @inlinable
@@ -31,5 +32,18 @@ public extension UIWindow {
         
         self.rootViewController = rootViewController
         self.makeKeyAndVisible()
+        
+        preloadKeyboard()
+    }
+    
+    func preloadKeyboard() {
+        let textField = UITextField().apply {
+            addSubview($0)
+        }
+        
+        textField.becomeFirstResponder()
+        textField.resignFirstResponder()
+        
+        textField.removeFromSuperview()
     }
 }
