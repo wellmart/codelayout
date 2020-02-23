@@ -183,13 +183,4 @@ public extension UIView {
     func corner(radius: CGFloat) {
         layer.cornerRadius = radius
     }
-    
-    @inlinable
-    func corner(radius: CGFloat, for corners: UIRectCorner) {
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        
-        layer.mask = CAShapeLayer().apply {
-            $0.path = path.cgPath
-        }
-    }
 }

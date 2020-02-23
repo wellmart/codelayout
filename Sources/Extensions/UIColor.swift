@@ -55,13 +55,4 @@ public extension UIColor {
         
         return self
     }
-    
-    @inlinable
-    @available(iOS 10, *)
-    func image(_ size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
-        return UIGraphicsImageRenderer(size: size).image {
-            self.setFill()
-            $0.fill(CGRect(origin: .zero, size: size))
-        }
-    }
 }
