@@ -27,7 +27,7 @@ import UIKit
 public extension UICollectionView {
     @inlinable
     func dequeue<T: UICollectionViewCell & ViewReusable>(_ type: T.Type, for indexPath: IndexPath, with viewModel: T.T?) -> T {
-        let cell = dequeueReusableCell(withReuseIdentifier: T.identifier, for: indexPath) as! T
+        let cell = dequeueReusableCell(withReuseIdentifier: type.identifier, for: indexPath) as! T
         
         if let viewModel = viewModel {
             cell.prepare(viewModel: viewModel)
@@ -38,7 +38,7 @@ public extension UICollectionView {
     
     @inlinable
     func dequeue<T: UICollectionReusableView & ViewReusable>(_ type: T.Type, ofKind kind: String? = nil, for indexPath: IndexPath, with viewModel: T.T?) -> T {
-        let view = dequeueReusableSupplementaryView(ofKind: kind ?? T.identifier, withReuseIdentifier: T.identifier, for: indexPath) as! T
+        let view = dequeueReusableSupplementaryView(ofKind: kind ?? type.identifier, withReuseIdentifier: type.identifier, for: indexPath) as! T
         
         if let viewModel = viewModel {
             view.prepare(viewModel: viewModel)
@@ -49,12 +49,12 @@ public extension UICollectionView {
     
     @inlinable
     func register<T: UICollectionViewCell & ViewReusable>(_ type: T.Type) {
-        register(type, forCellWithReuseIdentifier: T.identifier)
+        register(type, forCellWithReuseIdentifier: type.identifier)
     }
     
     @inlinable
     func register<T: UICollectionReusableView & ViewReusable>(_ type: T.Type, forKind kind: String? = nil) {
-        register(type, forSupplementaryViewOfKind: kind ?? T.identifier, withReuseIdentifier: T.identifier)
+        register(type, forSupplementaryViewOfKind: kind ?? type.identifier, withReuseIdentifier: type.identifier)
     }
     
     @inlinable
