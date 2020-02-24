@@ -24,7 +24,7 @@
 
 import UIKit
 
-public enum Dimension {
+public enum LayoutDimension {
     case absolute(_ value: CGFloat)
     case fractionalWidth(_ value: CGFloat)
     case fractionalHeight(_ value: CGFloat)
