@@ -26,7 +26,7 @@ import UIKit
 
 public extension UIButton {
     @inlinable
-    func setTitle(_ title: String, font: UIFont, for state: State) {
+    func setTitle(_ title: String, font: UIFont?, for state: State) {
         setTitle(title, for: state)
         titleLabel?.font = font
     }
