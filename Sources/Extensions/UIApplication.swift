@@ -80,7 +80,7 @@ public extension UIApplication {
     @available(iOS 9, *)
     var safeAreaInsets: UIEdgeInsets? {
         if #available(iOS 11, *) {
-            return UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets
+            return keyWindow?.rootViewController?.view.safeAreaInsets
         }
         
         return nil
