@@ -17,7 +17,7 @@ Swift 5 and beyond.
 ```swift
 import CodeLayout
 
-coming soon
+// coming soon
 ```
 
 ## License
