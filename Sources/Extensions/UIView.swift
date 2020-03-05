@@ -10,12 +10,12 @@
 //  copies of the Software, and to permit persons to whom the Software is
 //  furnished to do so, subject to the following conditions:
 //
-//  The above copyright notice and this permission notice sCodeLayout be included in
+//  The above copyright notice and this permission notice shall be included in
 //  all copies or substantial portions of the Software.
 //
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SCodeLayout THE
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 //  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
@@ -56,6 +56,45 @@ public extension UIView {
         return NSLayoutConstraint(item: self, attribute: attribute1, relatedBy: relation, toItem: item, attribute: attribute2, multiplier: multiplier, constant: constant).apply {
             superview?.addConstraint($0)
         }
+    }
+}
+
+@available(iOS 9, *)
+public extension UIView {
+    @inlinable
+    var safeAreaTopAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11, *) {
+            return safeAreaLayoutGuide.topAnchor
+        }
+        
+        return topAnchor
+    }
+    
+    @inlinable
+    var safeAreaRightAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11, *) {
+            return safeAreaLayoutGuide.rightAnchor
+        }
+        
+        return rightAnchor
+    }
+    
+    @inlinable
+    var safeAreaBottomAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11, *) {
+            return safeAreaLayoutGuide.bottomAnchor
+        }
+        
+        return bottomAnchor
+    }
+    
+    @inlinable
+    var safeAreaLeftAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11, *) {
+            return safeAreaLayoutGuide.leftAnchor
+        }
+        
+        return leftAnchor
     }
 }
 
