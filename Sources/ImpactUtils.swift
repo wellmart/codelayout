@@ -24,23 +24,31 @@
 
 import UIKit
 
-@available(iOS 10, *)
 public enum ImpactUtils {
-    @usableFromInline
-    static let selectionFeedback = UISelectionFeedbackGenerator()
-    
     @inlinable
     public static func error() {
+        guard #available(iOS 10, *) else {
+            return
+        }
+        
         UINotificationFeedbackGenerator().notificationOccurred(.error)
     }
     
     @inlinable
     public static func selectionChanged() {
-        selectionFeedback.selectionChanged()
+        guard #available(iOS 10, *) else {
+            return
+        }
+        
+        UISelectionFeedbackGenerator().selectionChanged()
     }
     
     @inlinable
     public static func success() {
+        guard #available(iOS 10, *) else {
+            return
+        }
+        
         UINotificationFeedbackGenerator().notificationOccurred(.success)
     }
 }
