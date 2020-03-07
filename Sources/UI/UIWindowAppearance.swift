@@ -24,10 +24,28 @@
 
 import UIKit
 
-public extension UIButton {
+public protocol UIWindowAppearance {
+    var font: UIFont? { get }
+    var textFieldFont: UIFont? { get }
+    var textColor: UIColor? { get }
+}
+
+extension UIWindowAppearance {
     @inlinable
-    func setTitle(_ title: String, font: UIFont?, for state: State) {
-        setTitle(title, for: state)
-        titleLabel?.font = font
+    func apply<T: UIView>(view: T) {
+        view.isOpaque = true
+        view.backgroundColor = view.superview?.backgroundColor
+
+        switch view {
+        case let label as UILabel:
+            label.font = font
+            label.textColor = textColor
+
+        case let textField as UITextField:
+            textField.font = textFieldFont
+            textField.textColor = textColor
+
+        default: break
+        }
     }
 }

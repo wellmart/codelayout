@@ -31,7 +31,9 @@ public enum ImpactUtils {
             return
         }
         
-        UINotificationFeedbackGenerator().notificationOccurred(.error)
+        DispatchQueue.main.async {
+            UINotificationFeedbackGenerator().notificationOccurred(.error)
+        }
     }
     
     @inlinable
@@ -40,7 +42,9 @@ public enum ImpactUtils {
             return
         }
         
-        UISelectionFeedbackGenerator().selectionChanged()
+        DispatchQueue.main.async {
+            UISelectionFeedbackGenerator().selectionChanged()
+        }
     }
     
     @inlinable
@@ -49,6 +53,8 @@ public enum ImpactUtils {
             return
         }
         
-        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        DispatchQueue.main.async {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+        }
     }
 }

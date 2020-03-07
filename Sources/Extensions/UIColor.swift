@@ -43,20 +43,6 @@ public extension UIColor {
     }
     
     @inlinable
-    func adjust(hueBy hue: CGFloat = 0, saturationBy saturation: CGFloat = 0, brightnessBy brightness: CGFloat = 0) -> UIColor {
-        var colorHue: CGFloat = 0
-        var colorSaturation: CGFloat = 0
-        var colorBrigthness: CGFloat = 0
-        var colorAlpha: CGFloat = 0
-        
-        if getHue(&colorHue, saturation: &colorSaturation, brightness: &colorBrigthness, alpha: &colorAlpha) {
-            return UIColor(hue: colorHue + hue, saturation: colorSaturation + saturation, brightness: colorBrigthness + brightness, alpha: colorAlpha)
-        }
-        
-        return self
-    }
-    
-    @inlinable
     @available(iOS 10, *)
     func image(_ size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
         return UIGraphicsImageRenderer(size: size).image { context in

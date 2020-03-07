@@ -33,6 +33,8 @@ public extension UIView {
             $0.translatesAutoresizingMaskIntoConstraints = false
             
             addSubview($0)
+            UIWindow.appearance?.apply(view: $0)
+            
             work($0)
         }
     }
@@ -44,6 +46,8 @@ public extension UIView {
             $0.translatesAutoresizingMaskIntoConstraints = false
             
             addSubview($0)
+            UIWindow.appearance?.apply(view: $0)
+
             work($0)
         }
     }
