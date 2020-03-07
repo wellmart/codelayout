@@ -25,9 +25,9 @@
 import UIKit
 
 public protocol UIWindowAppearance {
-    var font: UIFont? { get }
-    var textFieldFont: UIFont? { get }
-    var textColor: UIColor? { get }
+    var font: UIFont { get }
+    var textFieldFont: UIFont { get }
+    var textColor: UIColor { get }
 }
 
 extension UIWindowAppearance {
@@ -35,16 +35,16 @@ extension UIWindowAppearance {
     func apply<T: UIView>(view: T) {
         view.isOpaque = true
         view.backgroundColor = view.superview?.backgroundColor
-
+        
         switch view {
         case let label as UILabel:
             label.font = font
             label.textColor = textColor
-
+            
         case let textField as UITextField:
             textField.font = textFieldFont
             textField.textColor = textColor
-
+            
         default: break
         }
     }
