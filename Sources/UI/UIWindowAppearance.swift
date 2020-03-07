@@ -26,8 +26,8 @@ import UIKit
 
 public protocol UIWindowAppearance {
     var font: UIFont { get }
-    var textFieldFont: UIFont { get }
     var textColor: UIColor { get }
+    var textFieldFont: UIFont { get }
 }
 
 extension UIWindowAppearance {
