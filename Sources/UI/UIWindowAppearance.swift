@@ -27,6 +27,7 @@ import UIKit
 public protocol UIWindowAppearance {
     var backgroundColor: UIColor { get }
     var font: UIFont { get }
+    var highlightedTextColor: UIColor { get }
     var textColor: UIColor { get }
     var textFieldFont: UIFont { get }
     var tintColor: UIColor { get }
@@ -74,6 +75,13 @@ public extension UIWindowAppearance {
                 $0.textColor = textColor
             }
             
+        case let button as UIButton:
+            button.apply {
+                $0.setTitleColor(textColor, for: .normal)
+                $0.setTitleColor(highlightedTextColor, for: .highlighted)
+                $0.setTitleColor(highlightedTextColor, for: .selected)
+            }
+            
         case let textField as UITextField:
             textField.apply {
                 $0.font = textFieldFont
@@ -83,6 +91,23 @@ public extension UIWindowAppearance {
             }
             
         default: break
+        }
+    }
+    
+    @inlinable
+    func applyButtonBackground(on view: UIView) {
+        guard #available(iOS 10, *) else {
+            return
+        }
+        
+        let tintImage = tintColor.image()
+        var button: UIButton
+        
+        for view in view.subviews where view is UIButton {
+            button = view as! UIButton
+            
+            button.setBackgroundImage(tintImage, for: .selected)
+            button.setBackgroundImage(tintImage, for: .highlighted)
         }
     }
 }
