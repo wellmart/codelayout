@@ -25,44 +25,10 @@
 import UIKit
 import Adrenaline
 
-public extension UIWindow {
-    private struct Appearance {
-        static var `default`: UIWindowAppearance?
-    }
-    
-    static var appearance: UIWindowAppearance? {
-        get { return Appearance.default }
-        set { Appearance.default = newValue }
-    }
-}
-
-public extension UIWindow {
-    @inlinable
-    convenience init(rootViewController: UIViewController) {
-        self.init(frame: UIScreen.main.bounds)
-        
-        let appearance = UIWindow.appearance
-        
-        self.rootViewController = UINavigationController(rootViewController: rootViewController).apply {
-            appearance?.apply(on: $0.navigationBar)
-        }
-        
-        appearance?.apply(on: self)
-        self.makeKeyAndVisible()
-        
-        DispatchQueue.main.async {
-            self.preloadKeyboard()
-        }
-    }
-    
-    func preloadKeyboard() {
-        let textField = UITextField().apply {
-            addSubview($0)
-        }
-        
-        textField.becomeFirstResponder()
-        textField.resignFirstResponder()
-        
-        textField.removeFromSuperview()
+public extension UINavigationController {
+    func presentWithNavigation(_ viewController: UIViewController, animated: Bool = true) {
+        present(UINavigationController(rootViewController: viewController).apply {
+            UIWindow.appearance?.apply(on: $0.navigationBar)
+        }, animated: animated)
     }
 }
