@@ -45,78 +45,77 @@ public extension UIWindowAppearance {
             tabBar.apply {
                 $0.barTintColor = backgroundColor
                 $0.tintColor = textColor
-
+                
                 $0.isTranslucent = false
                 $0.backgroundImage = UIImage()
                 $0.shadowImage = UIImage()
             }
-
+            
         case let navigationBar as UINavigationBar:
             navigationBar.apply {
                 $0.barTintColor = backgroundColor
                 $0.titleTextAttributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: textColor]
-
+                
                 $0.isTranslucent = false
                 $0.shadowImage = UIImage()
-
+                
                 $0.setBackgroundImage(UIImage(), for: .default)
             }
-
+            
         case let collectionView as UICollectionView:
             collectionView.apply {
                 $0.backgroundColor = backgroundColor
-
+                
                 $0.showsVerticalScrollIndicator = false
                 $0.alwaysBounceVertical = true
             }
-
+            
         case let label as UILabel:
             label.apply {
                 $0.font = font
                 $0.textColor = textColor
             }
-
+            
         case let button as UIButton:
             button.apply {
                 $0.setTitleColor(textColor, for: .normal)
                 $0.setTitleColor(highlightedTextColor, for: .highlighted)
                 $0.setTitleColor(highlightedTextColor, for: .selected)
-
+                
                 $0.corner(radius: cornerRadius)
             }
-
+            
         case let textField as UITextField:
             textField.apply {
                 $0.font = textFieldFont
                 $0.textColor = textColor
-
+                
                 $0.autocorrectionType = .no
             }
-
+            
         default: break
         }
     }
-
+    
+    @inlinable
+    func createBarTextButton(title: String, action: Selector) -> UIBarButtonItem? {
+        return UIBarButtonItem(title: title, style: .plain, target: self, action: action).apply {
+            $0.setTitleTextAttributes([ NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: textColor ], for: .normal)
+        }
+    }
+    
     @inlinable
     func setButtonBackground(_ button: UIButton, backgroundColor: UIColor? = nil) {
-        guard #available(iOS 10, *) else {
-            return
-        }
-
         let normalImage = (backgroundColor ?? self.backgroundColor).image()
         let highlightedImage = tintColor.image()
-
+        
         button.setBackgroundImage(normalImage, for: .normal)
         button.setBackgroundImage(highlightedImage, for: .highlighted)
         button.setBackgroundImage(highlightedImage, for: .selected)
     }
-
+    
     @inlinable
     func updateButtonsBackground(on view: UIView, backgroundColor: UIColor? = nil) {
-        guard #available(iOS 10, *) else {
-            return
-        }
-
         for view in view.subviews where view is UIButton {
             setButtonBackground(view as! UIButton, backgroundColor: backgroundColor)
         }

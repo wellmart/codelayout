@@ -23,6 +23,7 @@
 //
 
 import UIKit
+import Adrenaline
 
 public extension UIColor {
     @inlinable
@@ -43,11 +44,26 @@ public extension UIColor {
     }
     
     @inlinable
-    @available(iOS 10, *)
     func image(_ size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
+        let rect = CGRect(origin: .zero, size: size)
+        
+        guard #available(iOS 10, *) else {
+            UIGraphicsBeginImageContext(size)
+            
+            let context = UIGraphicsGetCurrentContext()
+            
+            context?.setFillColor(self.cgColor)
+            context?.fill(rect)
+            
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            
+            UIGraphicsEndImageContext()
+            return image!
+        }
+        
         return UIGraphicsImageRenderer(size: size).image { context in
             self.setFill()
-            context.fill(CGRect(origin: .zero, size: size))
+            context.fill(rect)
         }
     }
 }
