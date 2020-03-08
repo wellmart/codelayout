@@ -29,9 +29,9 @@ public extension UINavigationController {
     @discardableResult
     func presentNavigation(rootViewController: UIViewController, animated: Bool = true) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: rootViewController).apply {
+            $0.modalPresentationStyle = rootViewController.modalPresentationStyle
             $0.view.backgroundColor = UIWindow.appearance?.backgroundColor
-            $0.modalPresentationStyle = .fullScreen
-            
+
             UIWindow.appearance?.apply(on: $0.navigationBar)
         }
 
