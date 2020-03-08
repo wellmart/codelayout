@@ -29,7 +29,7 @@ public extension UIWindow {
     private struct Appearance {
         static var `default`: UIWindowAppearance?
     }
-    
+
     static var appearance: UIWindowAppearance? {
         get { return Appearance.default }
         set { Appearance.default = newValue }
@@ -40,13 +40,12 @@ public extension UIWindow {
     @inlinable
     convenience init(rootViewController: UIViewController) {
         self.init(frame: UIScreen.main.bounds)
-        
-        self.backgroundColor = UIWindow.appearance?.backgroundColor
-        self.tintColor = UIWindow.appearance?.tintColor
-        
+
+        UIWindow.appearance?.apply(on: self)
+
         self.rootViewController = rootViewController
         self.makeKeyAndVisible()
-        
+
         DispatchQueue.main.async {
             self.preloadKeyboard()
         }

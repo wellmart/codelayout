@@ -32,25 +32,58 @@ public protocol UIWindowAppearance {
     var tintColor: UIColor { get }
 }
 
-extension UIWindowAppearance {
+public extension UIWindowAppearance {
     @inlinable
-    func apply<T: UIView>(view: T) {
+    func apply<T: UIView>(on view: T) {
         switch view {
-        case let label as UILabel:
-            label.font = font
-            label.textColor = textColor
+        case let window as UIWindow:
+            window.apply {
+                $0.backgroundColor = backgroundColor
+                $0.tintColor = tintColor
+            }
             
-        case let textField as UITextField:
-            textField.font = textFieldFont
-            textField.textColor = textColor
+        case let tabBar as UITabBar:
+            tabBar.apply {
+                $0.barTintColor = backgroundColor
+                $0.tintColor = textColor
+                
+                $0.isTranslucent = false
+                $0.backgroundImage = UIImage()
+                $0.shadowImage = UIImage()
+            }
             
-            textField.autocorrectionType = .no
+        case let navigationBar as UINavigationBar:
+            navigationBar.apply {
+                $0.barTintColor = backgroundColor
+                $0.titleTextAttributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: textColor]
+                
+                $0.isTranslucent = false
+                $0.shadowImage = UIImage()
+                
+                $0.setBackgroundImage(UIImage(), for: .default)
+            }
             
         case let collectionView as UICollectionView:
-            collectionView.backgroundColor = backgroundColor
+            collectionView.apply {
+                $0.backgroundColor = backgroundColor
+                
+                $0.showsVerticalScrollIndicator = false
+                $0.alwaysBounceVertical = true
+            }
             
-            collectionView.showsVerticalScrollIndicator = false
-            collectionView.alwaysBounceVertical = true
+        case let label as UILabel:
+            label.apply {
+                $0.font = font
+                $0.textColor = textColor
+            }
+            
+        case let textField as UITextField:
+            textField.apply {
+                $0.font = textFieldFont
+                $0.textColor = textColor
+                
+                $0.autocorrectionType = .no
+            }
             
         default: break
         }
