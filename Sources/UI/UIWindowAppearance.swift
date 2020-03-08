@@ -25,9 +25,11 @@
 import UIKit
 
 public protocol UIWindowAppearance {
+    var backgroundColor: UIColor { get }
     var font: UIFont { get }
     var textColor: UIColor { get }
     var textFieldFont: UIFont { get }
+    var tintColor: UIColor { get }
 }
 
 extension UIWindowAppearance {
@@ -37,11 +39,19 @@ extension UIWindowAppearance {
         case let label as UILabel:
             label.font = font
             label.textColor = textColor
-
+            
         case let textField as UITextField:
             textField.font = textFieldFont
             textField.textColor = textColor
-
+            
+            textField.autocorrectionType = .no
+            
+        case let collectionView as UICollectionView:
+            collectionView.backgroundColor = backgroundColor
+            
+            collectionView.showsVerticalScrollIndicator = false
+            collectionView.alwaysBounceVertical = true
+            
         default: break
         }
     }

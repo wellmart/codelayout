@@ -41,6 +41,9 @@ public extension UIWindow {
     convenience init(rootViewController: UIViewController) {
         self.init(frame: UIScreen.main.bounds)
         
+        self.backgroundColor = UIWindow.appearance?.backgroundColor
+        self.tintColor = UIWindow.appearance?.tintColor
+        
         self.rootViewController = rootViewController
         self.makeKeyAndVisible()
         
