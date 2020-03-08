@@ -33,8 +33,6 @@ public protocol UIWindowAppearance {
 extension UIWindowAppearance {
     @inlinable
     func apply<T: UIView>(view: T) {
-        view.backgroundColor = view.superview?.backgroundColor
-
         switch view {
         case let label as UILabel:
             label.font = font
