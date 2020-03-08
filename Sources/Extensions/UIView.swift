@@ -225,5 +225,6 @@ public extension UIView {
     @inlinable
     func corner(radius: CGFloat) {
         layer.cornerRadius = radius
+        layer.masksToBounds = true
     }
 }
