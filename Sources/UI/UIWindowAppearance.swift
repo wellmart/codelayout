@@ -95,7 +95,18 @@ public extension UIWindowAppearance {
     }
     
     @inlinable
-    func applyButtonBackground(on view: UIView, backgroundColor: UIColor? = nil) {
+    func applyButtonBackground(baseview: UIView, backgroundColor: UIColor? = nil) {
+        guard #available(iOS 10, *) else {
+            return
+        }
+        
+        for view in baseview.subviews where view is UIButton {
+            applyButtonBackground(view as! UIButton, backgroundColor: backgroundColor)
+        }
+    }
+    
+    @inlinable
+    func applyButtonBackground(_ button: UIButton, backgroundColor: UIColor? = nil) {
         guard #available(iOS 10, *) else {
             return
         }
@@ -103,14 +114,8 @@ public extension UIWindowAppearance {
         let normalImage = (backgroundColor ?? self.backgroundColor).image()
         let highlightedImage = tintColor.image()
         
-        var button: UIButton
-        
-        for view in view.subviews where view is UIButton {
-            button = view as! UIButton
-            
-            button.setBackgroundImage(normalImage, for: .normal)
-            button.setBackgroundImage(highlightedImage, for: .highlighted)
-            button.setBackgroundImage(highlightedImage, for: .selected)
-        }
+        button.setBackgroundImage(normalImage, for: .normal)
+        button.setBackgroundImage(highlightedImage, for: .highlighted)
+        button.setBackgroundImage(highlightedImage, for: .selected)
     }
 }
