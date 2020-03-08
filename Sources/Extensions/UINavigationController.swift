@@ -28,6 +28,7 @@ import Adrenaline
 public extension UINavigationController {
     func presentWithNavigation(_ viewController: UIViewController, animated: Bool = true) {
         present(UINavigationController(rootViewController: viewController).apply {
+            $0.view.backgroundColor = UIWindow.appearance?.backgroundColor
             UIWindow.appearance?.apply(on: $0.navigationBar)
         }, animated: animated)
     }
