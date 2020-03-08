@@ -26,10 +26,14 @@ import UIKit
 import Adrenaline
 
 public extension UINavigationController {
-    func presentWithNavigation(_ viewController: UIViewController, animated: Bool = true) {
-        present(UINavigationController(rootViewController: viewController).apply {
+    @discardableResult
+    func presentNavigation(rootViewController: UIViewController, animated: Bool = true) -> UINavigationController {
+        let navigationController = UINavigationController(rootViewController: rootViewController).apply {
             $0.view.backgroundColor = UIWindow.appearance?.backgroundColor
             UIWindow.appearance?.apply(on: $0.navigationBar)
-        }, animated: animated)
+        }
+
+        present(navigationController, animated: animated)
+        return navigationController
     }
 }
