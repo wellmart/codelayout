@@ -44,6 +44,8 @@ public extension UIWindowAppearance {
         case let tabBar as UITabBar:
             tabBar.apply {
                 $0.barTintColor = backgroundColor
+                $0.tintColor = textColor
+
                 $0.isTranslucent = false
                 $0.backgroundImage = UIImage()
                 $0.shadowImage = UIImage()
