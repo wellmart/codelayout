@@ -54,7 +54,7 @@ public extension UIWindowAppearance {
         case let navigationBar as UINavigationBar:
             navigationBar.apply {
                 $0.barTintColor = backgroundColor
-                $0.titleTextAttributes = [ .font: font, .foregroundColor: textColor]
+                $0.titleTextAttributes = [ .font: font, .foregroundColor: textColor ]
 
                 $0.isTranslucent = false
                 $0.shadowImage = UIImage()
