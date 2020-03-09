@@ -54,8 +54,8 @@ public extension UIWindowAppearance {
         case let navigationBar as UINavigationBar:
             navigationBar.apply {
                 $0.barTintColor = backgroundColor
-                $0.titleTextAttributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: textColor]
-                
+                $0.titleTextAttributes = [ .font: font, .foregroundColor: textColor]
+
                 $0.isTranslucent = false
                 $0.shadowImage = UIImage()
                 
@@ -98,9 +98,9 @@ public extension UIWindowAppearance {
     }
     
     @inlinable
-    func createNavigationBarButton(title: String, font: UIFont? = nil, action: Selector) -> UIBarButtonItem? {
-        return UIBarButtonItem(title: title, style: .plain, target: self, action: action).apply {
-            $0.setTitleTextAttributes([ NSAttributedString.Key.font: font ?? self.font, NSAttributedString.Key.foregroundColor: textColor ], for: .normal)
+    func createNavigationBarButton(title: String, font: UIFont? = nil, target: Any?, action: Selector) -> UIBarButtonItem? {
+        return UIBarButtonItem(title: title, style: .plain, target: target, action: action).apply {
+            $0.setTitleTextAttributes([ .font: font ?? self.font, .foregroundColor: textColor ], for: .normal)
         }
     }
     
@@ -108,7 +108,7 @@ public extension UIWindowAppearance {
     func createTabBarButton(title: String, font: UIFont, positionVertical: CGFloat) -> UITabBarItem {
         return UITabBarItem(title: title, image: nil, selectedImage: nil).apply {
             $0.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -positionVertical)
-            $0.setTitleTextAttributes([.font: font], for: .normal)
+            $0.setTitleTextAttributes([ .font: font ], for: .normal)
         }
     }
     
