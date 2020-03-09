@@ -99,12 +99,14 @@ public extension UIWindowAppearance {
     
     @inlinable
     func createNavigationBarButton(title: String, font: UIFont? = nil, positionVertical: CGFloat = 0, target: Any?, action: Selector) -> UIBarButtonItem? {
-        let attributes: [NSAttributedString.Key: Any] = [ .font: font ?? self.font, .foregroundColor: textColor ]
+        let attributes: [NSAttributedString.Key: Any] = [ .font: font ?? self.font, .foregroundColor: textColor, .baselineOffset: 50 ]
 
         return UIBarButtonItem(title: title, style: .plain, target: target, action: action).apply {
             $0.setTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: positionVertical), for: .default)
             $0.setTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: positionVertical), for: .compact)
-            
+            $0.setTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: positionVertical), for: .compactPrompt)
+            $0.setTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: positionVertical), for: .defaultPrompt)
+
             $0.setTitleTextAttributes(attributes, for: .normal)
             $0.setTitleTextAttributes(attributes, for: .highlighted)
         }
