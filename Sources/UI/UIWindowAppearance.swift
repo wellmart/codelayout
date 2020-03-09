@@ -104,7 +104,8 @@ public extension UIWindowAppearance {
         return UIBarButtonItem(title: title, style: .plain, target: target, action: action).apply {
             $0.setTitleTextAttributes(attributes, for: .normal)
             $0.setTitleTextAttributes(attributes, for: .highlighted)
-            $0.setTitleTextAttributes(attributes, for: .disabled)
+            
+            $0.setTitleTextAttributes([ .font: font ?? self.font, .baselineOffset: baselineOffset ], for: .disabled)
         }
     }
 
