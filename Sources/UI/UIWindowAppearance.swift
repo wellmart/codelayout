@@ -98,14 +98,14 @@ public extension UIWindowAppearance {
     }
     
     @inlinable
-    func createBarTextButton(title: String, action: Selector) -> UIBarButtonItem? {
+    func createNavigationBarButton(title: String, font: UIFont? = nil, action: Selector) -> UIBarButtonItem? {
         return UIBarButtonItem(title: title, style: .plain, target: self, action: action).apply {
-            $0.setTitleTextAttributes([ NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: textColor ], for: .normal)
+            $0.setTitleTextAttributes([ NSAttributedString.Key.font: font ?? self.font, NSAttributedString.Key.foregroundColor: textColor ], for: .normal)
         }
     }
     
     @inlinable
-    func createTabBarText(title: String, font: UIFont, positionVertical: CGFloat) -> UITabBarItem {
+    func createTabBarButton(title: String, font: UIFont, positionVertical: CGFloat) -> UITabBarItem {
         return UITabBarItem(title: title, image: nil, selectedImage: nil).apply {
             $0.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -positionVertical)
             $0.setTitleTextAttributes([.font: font], for: .normal)
