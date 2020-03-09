@@ -108,9 +108,10 @@ public extension UIWindowAppearance {
     }
     
     @inlinable
-    func createTabBarButton(title: String, font: UIFont, baselineOffset: CGFloat) -> UITabBarItem {
+    func createTabBarButton(title: String, font: UIFont, positionVertical: CGFloat) -> UITabBarItem {
         return UITabBarItem(title: title, image: nil, selectedImage: nil).apply {
-            $0.setTitleTextAttributes([ .font: font, .baselineOffset: baselineOffset ], for: .normal)
+            $0.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -positionVertical)
+            $0.setTitleTextAttributes([ .font: font ], for: .normal)
         }
     }
     
