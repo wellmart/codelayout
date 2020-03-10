@@ -31,8 +31,12 @@ public extension UIWindow {
     }
     
     static var appearance: UIWindowAppearance? {
-        get { return Appearance.default }
-        set { Appearance.default = newValue }
+        get {
+            return Appearance.default
+        }
+        set {
+            Appearance.default = newValue
+        }
     }
 }
 
