@@ -43,7 +43,7 @@ public extension UIWindowAppearance {
             
         case let switchControl as UISwitch:
             switchControl.onTintColor = tintColor
-            switchControl.thumbTintColor = .white
+            switchControl.thumbTintColor = textColor
             
         case let tabBar as UITabBar:
             tabBar.apply {
