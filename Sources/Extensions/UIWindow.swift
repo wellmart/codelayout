@@ -47,7 +47,7 @@ public extension UIWindow {
         
         let appearance = UIWindow.appearance
         
-        self.rootViewController = UINavigationController(rootViewController: rootViewController).apply {
+        self.rootViewController = UIPoppingNavigationController(rootViewController: rootViewController).apply {
             appearance?.apply(on: $0.navigationBar)
         }
         
