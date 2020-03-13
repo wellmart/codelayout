@@ -40,10 +40,10 @@ public extension UIWindowAppearance {
         switch view {
         case let window as UIWindow:
             window.tintColor = tintColor
-
-        case let control as UISwitch:
-            control.tintColor = tintColor
-
+            
+        case let switchControl as UISwitch:
+            switchControl.onTintColor = tintColor
+            
         case let tabBar as UITabBar:
             tabBar.apply {
                 $0.barTintColor = backgroundColor
