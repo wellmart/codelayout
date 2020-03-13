@@ -55,7 +55,7 @@ public extension UIWindowAppearance {
             navigationBar.apply {
                 $0.barTintColor = backgroundColor
                 $0.titleTextAttributes = [ .font: font, .foregroundColor: textColor ]
-
+                
                 $0.isTranslucent = false
                 $0.shadowImage = UIImage()
                 
@@ -100,7 +100,7 @@ public extension UIWindowAppearance {
     @inlinable
     func createNavigationBarButton(title: String, font: UIFont? = nil, baselineOffset: CGFloat = 0, target: Any?, action: Selector) -> UIBarButtonItem? {
         let attributes: [NSAttributedString.Key: Any] = [ .font: font ?? self.font, .foregroundColor: textColor, .baselineOffset: baselineOffset ]
-
+        
         return UIBarButtonItem(title: title, style: .plain, target: target, action: action).apply {
             $0.setTitleTextAttributes(attributes, for: .normal)
             $0.setTitleTextAttributes(attributes, for: .highlighted)
@@ -108,7 +108,7 @@ public extension UIWindowAppearance {
             $0.setTitleTextAttributes([ .font: font ?? self.font, .baselineOffset: baselineOffset ], for: .disabled)
         }
     }
-
+    
     @inlinable
     func createTabBarButton(title: String, font: UIFont, positionVertical: CGFloat) -> UITabBarItem {
         return UITabBarItem(title: title, image: nil, selectedImage: nil).apply {
@@ -116,7 +116,7 @@ public extension UIWindowAppearance {
             $0.setTitleTextAttributes([ .font: font ], for: .normal)
         }
     }
-
+    
     @inlinable
     func setButtonBackground(_ button: UIButton, backgroundColor: UIColor? = nil) {
         let normalImage = (backgroundColor ?? self.backgroundColor).image()
@@ -125,6 +125,8 @@ public extension UIWindowAppearance {
         button.setBackgroundImage(normalImage, for: .normal)
         button.setBackgroundImage(highlightedImage, for: .highlighted)
         button.setBackgroundImage(highlightedImage, for: .selected)
+        
+        button.setBackgroundImage(highlightedImage, for: [ .highlighted, .selected ])
     }
     
     @inlinable
