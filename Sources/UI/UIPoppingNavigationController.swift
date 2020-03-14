@@ -97,7 +97,9 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
                     toView.transform = .identity
                     fromView.transform = transformBackView
                 }) { _ in
+                    toView.transform = .identity
                     fromView.transform = .identity
+                    
                     transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
                 }
             }
@@ -109,7 +111,9 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
                     toView.transform = .identity
                     fromView.transform = transform
                 }) { _ in
+                    toView.transform = .identity
                     fromView.transform = .identity
+                    
                     transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
                 }
             }
