@@ -39,7 +39,10 @@ public extension UIWindowAppearance {
     func apply<T: UIView>(on view: T) {
         switch view {
         case let window as UIWindow:
-            window.tintColor = tintColor
+            window.apply {
+                $0.backgroundColor = backgroundColor
+                $0.tintColor = tintColor
+            }
 
         case let tabBar as UITabBar:
             tabBar.apply {
