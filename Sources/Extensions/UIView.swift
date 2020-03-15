@@ -47,9 +47,19 @@ public extension UIView {
             
             addSubview($0)
             UIWindow.appearance?.apply(on: $0)
-
+            
             work($0)
         }
+    }
+}
+
+public extension UIView {
+    @inlinable
+    func addPanGesture(target: Any, action: Selector?, delegate: UIGestureRecognizerDelegate? = nil) {
+        addGestureRecognizer(UIPanGestureRecognizer(target: target, action: action).apply {
+            $0.maximumNumberOfTouches = 1
+            $0.delegate = delegate
+        })
     }
 }
 
