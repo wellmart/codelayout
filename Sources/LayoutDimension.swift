@@ -32,11 +32,6 @@ public enum LayoutDimension {
     case fractionalHeight(_ value: CGFloat)
     
     @inlinable
-    public static var zero: LayoutDimension {
-        return .absolute(0)
-    }
-    
-    @inlinable
     public func calculate(in bounds: CGRect = UIScreen.main.bounds) -> CGFloat {
         switch self {
         case .fullWidth:
