@@ -24,6 +24,5 @@
 
 import Foundation
 
-@objc
 public protocol ViewModel {
 }
