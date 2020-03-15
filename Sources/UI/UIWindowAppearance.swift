@@ -40,11 +40,7 @@ public extension UIWindowAppearance {
         switch view {
         case let window as UIWindow:
             window.tintColor = tintColor
-            
-        case let switchControl as UISwitch:
-            switchControl.onTintColor = tintColor
-            switchControl.thumbTintColor = backgroundColor
-            
+
         case let tabBar as UITabBar:
             tabBar.apply {
                 $0.barTintColor = backgroundColor
@@ -65,7 +61,7 @@ public extension UIWindowAppearance {
                 
                 $0.setBackgroundImage(UIImage(), for: .default)
             }
-            
+
         case let collectionView as UICollectionView:
             collectionView.apply {
                 $0.backgroundColor = backgroundColor
@@ -96,7 +92,13 @@ public extension UIWindowAppearance {
                 
                 $0.autocorrectionType = .no
             }
-            
+
+        case let switchControl as UISwitch:
+            switchControl.apply {
+                $0.onTintColor = tintColor
+                $0.thumbTintColor = backgroundColor
+            }
+
         default: break
         }
     }

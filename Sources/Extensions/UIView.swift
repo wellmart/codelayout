@@ -25,54 +25,6 @@
 import UIKit
 import Adrenaline
 
-public extension UIView {
-    @inlinable
-    @discardableResult
-    func addSubview<T: UIView>(_ type: T.Type, apply work: (T) -> Void) -> T {
-        return T().apply {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            
-            addSubview($0)
-            UIWindow.appearance?.apply(on: $0)
-            
-            work($0)
-        }
-    }
-    
-    @inlinable
-    @discardableResult
-    func addSubview<T: UIView>(_ view: T, apply work: (T) -> Void) -> T {
-        return view.apply {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            
-            addSubview($0)
-            UIWindow.appearance?.apply(on: $0)
-            
-            work($0)
-        }
-    }
-}
-
-public extension UIView {
-    @inlinable
-    func addPanGesture(target: Any, action: Selector?, delegate: UIGestureRecognizerDelegate? = nil) {
-        addGestureRecognizer(UIPanGestureRecognizer(target: target, action: action).apply {
-            $0.maximumNumberOfTouches = 1
-            $0.delegate = delegate
-        })
-    }
-}
-
-public extension UIView {
-    @inlinable
-    @discardableResult
-    func addConstraint(attribute attribute1: NSLayoutConstraint.Attribute, relatedBy relation: NSLayoutConstraint.Relation = .equal, toItem item: UIView? = nil, toAttribute attribute2: NSLayoutConstraint.Attribute = .notAnAttribute, multiplier: CGFloat = 1, constant: CGFloat = 0) -> NSLayoutConstraint {
-        return NSLayoutConstraint(item: self, attribute: attribute1, relatedBy: relation, toItem: item, attribute: attribute2, multiplier: multiplier, constant: constant).apply {
-            superview?.addConstraint($0)
-        }
-    }
-}
-
 @available(iOS 9, *)
 public extension UIView {
     @inlinable
@@ -228,6 +180,71 @@ public extension UIView {
         return centerYAnchor.constraint(equalTo: anchor, constant: constant).apply {
             $0.isActive = true
         }
+    }
+}
+
+public extension UIView {
+    @inlinable
+    @discardableResult
+    func addConstraint(attribute attribute1: NSLayoutConstraint.Attribute, relatedBy relation: NSLayoutConstraint.Relation = .equal, toItem item: UIView? = nil, toAttribute attribute2: NSLayoutConstraint.Attribute = .notAnAttribute, multiplier: CGFloat = 1, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return NSLayoutConstraint(item: self, attribute: attribute1, relatedBy: relation, toItem: item, attribute: attribute2, multiplier: multiplier, constant: constant).apply {
+            superview?.addConstraint($0)
+        }
+    }
+}
+
+public extension UIView {
+    @inlinable
+    @discardableResult
+    func addSubview<T: UIView>(_ type: T.Type, apply work: (T) -> Void) -> T {
+        return T().apply {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            
+            addSubview($0)
+            UIWindow.appearance?.apply(on: $0)
+            
+            work($0)
+        }
+    }
+    
+    @inlinable
+    @discardableResult
+    func addSubview<T: UIView>(_ view: T, apply work: (T) -> Void) -> T {
+        return view.apply {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            
+            addSubview($0)
+            UIWindow.appearance?.apply(on: $0)
+            
+            work($0)
+        }
+    }
+}
+
+public extension UIView {
+    @inlinable
+    func addPanGesture(target: Any, action: Selector?, delegate: UIGestureRecognizerDelegate? = nil) {
+        addGestureRecognizer(UIPanGestureRecognizer(target: target, action: action).apply {
+            $0.maximumNumberOfTouches = 1
+            $0.delegate = delegate
+        })
+    }
+    
+    @inlinable
+    func addTapGesture(target: Any, action: Selector?, delegate: UIGestureRecognizerDelegate? = nil) {
+        addGestureRecognizer(UITapGestureRecognizer(target: target, action: action).apply {
+            $0.numberOfTapsRequired = 1
+            $0.numberOfTouchesRequired = 1
+            
+            $0.delegate = delegate
+        })
+    }
+}
+
+public extension UIView {
+    @inlinable
+    static func animate(_ animation: @autoclosure @escaping () -> Void, duration: TimeInterval = 0.15) {
+        animate(withDuration: duration, animations: animation)
     }
 }
 
