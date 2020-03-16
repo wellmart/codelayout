@@ -26,6 +26,7 @@ import UIKit
 
 public protocol UIWindowAppearance {
     var backgroundColor: UIColor { get }
+    var buttonCornerRadius: CGFloat { get }
     var cornerRadius: CGFloat { get }
     var font: UIFont { get }
     var highlightedTextColor: UIColor { get }
@@ -85,7 +86,7 @@ public extension UIWindowAppearance {
                 $0.setTitleColor(highlightedTextColor, for: .highlighted)
                 $0.setTitleColor(highlightedTextColor, for: .selected)
                 
-                $0.corner(radius: cornerRadius)
+                $0.corner(radius: buttonCornerRadius)
             }
             
         case let textField as UITextField:
