@@ -52,21 +52,6 @@ public extension UIWindow {
         }
         
         appearance?.apply(on: self)
-        self.makeKeyAndVisible()
-        
-        DispatchQueue.main.async {
-            self.preloadKeyboard()
-        }
-    }
-    
-    func preloadKeyboard() {
-        let textField = UITextField().apply {
-            addSubview($0)
-        }
-        
-        textField.becomeFirstResponder()
-        textField.resignFirstResponder()
-        
-        textField.removeFromSuperview()
+        makeKeyAndVisible()
     }
 }
