@@ -28,9 +28,9 @@ public final class UIPoppingNavigationController: UINavigationController {
     private var interactiveTransition: UIPercentDrivenInteractiveTransition?
     
     public override func viewDidLoad() {
-        delegate = self
-        
         super.viewDidLoad()
+
+        delegate = self
         
         view.addGestureRecognizer(UIScreenEdgePanGestureRecognizer(target: self, action: #selector(didPan)).apply {
             $0.edges = .left
