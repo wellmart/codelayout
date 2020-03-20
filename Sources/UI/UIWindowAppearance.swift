@@ -93,8 +93,6 @@ public extension UIWindowAppearance {
             textField.apply {
                 $0.font = textFieldFont
                 $0.textColor = textColor
-                
-                $0.autocorrectionType = .no
             }
 
         case let switchControl as UISwitch:
