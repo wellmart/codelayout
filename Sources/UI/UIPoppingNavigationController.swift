@@ -29,7 +29,7 @@ public final class UIPoppingNavigationController: UINavigationController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         delegate = self
         
         view.addGestureRecognizer(UIScreenEdgePanGestureRecognizer(target: self, action: #selector(didPan)).apply {
@@ -87,7 +87,7 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
             let width = transitionContext.containerView.frame.width
             
             let transform = CGAffineTransform(translationX: width, y: 0)
-            let transformBackView = CGAffineTransform(translationX: -width , y: 0)
+            let transformBack = CGAffineTransform(translationX: -width , y: 0)
             
             if operation == .push {
                 toView.transform = transform
@@ -95,7 +95,7 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
                 
                 UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
                     toView.transform = .identity
-                    fromView.transform = transformBackView
+                    fromView.transform = transformBack
                 }) { _ in
                     toView.transform = .identity
                     fromView.transform = .identity
@@ -104,7 +104,7 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
                 }
             }
             else if operation == .pop {
-                toView.transform = transformBackView
+                toView.transform = transformBack
                 transitionContext.containerView.insertSubview(toView, belowSubview: fromView)
                 
                 UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
