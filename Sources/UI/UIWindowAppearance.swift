@@ -81,21 +81,18 @@ public extension UIWindowAppearance {
             }
             
         case let button as UIButton:
+            let highlightedImage = tintColor.image()
+            
             button.apply {
                 $0.setTitleColor(textColor, for: .normal)
                 $0.setTitleColor(highlightedTextColor, for: .highlighted)
                 $0.setTitleColor(highlightedTextColor, for: .selected)
-
-
-               // let normalImage = (backgroundColor ?? self.backgroundColor).image()
-                let highlightedImage = tintColor.image()
-
-               // button.setBackgroundImage(normalImage, for: .normal)
+                $0.setTitleColor(highlightedTextColor, for: [.highlighted, .selected])
+                
                 $0.setBackgroundImage(highlightedImage, for: .highlighted)
                 $0.setBackgroundImage(highlightedImage, for: .selected)
-
                 $0.setBackgroundImage(highlightedImage, for: [.highlighted, .selected])
-
+                
                 $0.corner(radius: buttonCornerRadius)
             }
             
@@ -134,26 +131,4 @@ public extension UIWindowAppearance {
             $0.setTitleTextAttributes([.font: font], for: .normal)
         }
     }
-
-    /*
-    @inlinable
-    func setButtonBackground(_ button: UIButton, backgroundColor: UIColor? = nil) {
-        let normalImage = (backgroundColor ?? self.backgroundColor).image()
-        let highlightedImage = tintColor.image()
-        
-        button.setBackgroundImage(normalImage, for: .normal)
-        button.setBackgroundImage(highlightedImage, for: .highlighted)
-        button.setBackgroundImage(highlightedImage, for: .selected)
-        
-        button.setBackgroundImage(highlightedImage, for: [.highlighted, .selected])
-    }
-*/
-    /*
-    @inlinable
-    func updateButtonsBackground(on view: UIView, backgroundColor: UIColor? = nil) {
-        for view in view.subviews where view is UIButton {
-            setButtonBackground(view as! UIButton, backgroundColor: backgroundColor)
-        }
-    }
-    */
 }
