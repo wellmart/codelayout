@@ -25,21 +25,15 @@
 import UIKit
 
 public enum LayoutDimension {
-    case fullWidth
-    case fullHeight
     case absolute(_ value: CGFloat)
     case fractionalWidth(_ value: CGFloat)
     case fractionalHeight(_ value: CGFloat)
+    case fullWidth
+    case fullHeight
     
     @inlinable
     public func calculate(in bounds: CGRect = UIScreen.main.bounds) -> CGFloat {
         switch self {
-        case .fullWidth:
-            return bounds.width
-            
-        case .fullHeight:
-            return bounds.height
-            
         case let .absolute(value):
             return value
             
@@ -48,6 +42,12 @@ public enum LayoutDimension {
             
         case let .fractionalHeight(value):
             return bounds.height * value
+            
+        case .fullWidth:
+            return bounds.width
+            
+        case .fullHeight:
+            return bounds.height
         }
     }
 }
