@@ -69,10 +69,19 @@ public final class UIPoppingNavigationController: UINavigationController {
 
 extension UIPoppingNavigationController: UINavigationControllerDelegate {
     private final class AnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
-        private let operation: Operation
+        private let operation: Operation?
         
         init(operation: Operation) {
-            self.operation = operation
+            switch operation {
+            case .push:
+                self.operation = UIApplication.shared.leftToRightLayoutDirection ? .push : .pop
+                
+            case .pop:
+                self.operation = UIApplication.shared.leftToRightLayoutDirection ? .pop : .push
+                
+            default:
+                self.operation = nil
+            }
         }
         
         func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
