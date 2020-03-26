@@ -96,6 +96,20 @@ public extension UIView {
     
     @inlinable
     @discardableResult
+    func anchor(right constant: CGFloat) -> NSLayoutConstraint {
+        return anchor(right: superview!.rightAnchor, constant: constant)
+    }
+    
+    @inlinable
+    @discardableResult
+    func anchor(right anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return rightAnchor.constraint(equalTo: anchor, constant: -constant).apply {
+            $0.isActive = true
+        }
+    }
+    
+    @inlinable
+    @discardableResult
     func anchor(bottom constant: CGFloat) -> NSLayoutConstraint {
         return anchor(bottom: superview!.bottomAnchor, constant: constant)
     }
@@ -118,6 +132,20 @@ public extension UIView {
     @discardableResult
     func anchor(leading anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
         return leadingAnchor.constraint(equalTo: anchor, constant: constant).apply {
+            $0.isActive = true
+        }
+    }
+    
+    @inlinable
+    @discardableResult
+    func anchor(left constant: CGFloat) -> NSLayoutConstraint {
+        return anchor(left: superview!.leftAnchor, constant: constant)
+    }
+    
+    @inlinable
+    @discardableResult
+    func anchor(left anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return leftAnchor.constraint(equalTo: anchor, constant: constant).apply {
             $0.isActive = true
         }
     }
