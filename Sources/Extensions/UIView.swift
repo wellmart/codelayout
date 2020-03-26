@@ -46,6 +46,15 @@ public extension UIView {
     }
     
     @inlinable
+    var safeAreaRightAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11, *) {
+            return safeAreaLayoutGuide.rightAnchor
+        }
+        
+        return rightAnchor
+    }
+    
+    @inlinable
     var safeAreaBottomAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11, *) {
             return safeAreaLayoutGuide.bottomAnchor
@@ -61,6 +70,15 @@ public extension UIView {
         }
         
         return leadingAnchor
+    }
+    
+    @inlinable
+    var safeAreaLeftAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11, *) {
+            return safeAreaLayoutGuide.leftAnchor
+        }
+        
+        return leftAnchor
     }
 }
 
