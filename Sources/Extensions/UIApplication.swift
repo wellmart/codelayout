@@ -77,6 +77,11 @@ public extension UIApplication {
     }
     
     @inlinable
+    var leftToRightLayoutDirection: Bool {
+        return userInterfaceLayoutDirection != .rightToLeft
+    }
+    
+    @inlinable
     @available(iOS 9, *)
     var safeAreaInsets: UIEdgeInsets? {
         if #available(iOS 11, *) {
