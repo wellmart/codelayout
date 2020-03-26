@@ -33,7 +33,7 @@ public final class UIPoppingNavigationController: UINavigationController {
         delegate = self
         
         view.addGestureRecognizer(UIScreenEdgePanGestureRecognizer(target: self, action: #selector(didPan)).apply {
-            $0.edges = .left
+            $0.edges = UIApplication.shared.leftToRightLayoutDirection ? .left : .right
             $0.maximumNumberOfTouches = 1
         })
     }
@@ -72,12 +72,14 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
         private let operation: Operation?
         
         init(operation: Operation) {
+            let leftToRightLayoutDirection = UIApplication.shared.leftToRightLayoutDirection
+            
             switch operation {
             case .push:
-                self.operation = UIApplication.shared.leftToRightLayoutDirection ? .push : .pop
+                self.operation = leftToRightLayoutDirection ? .push : .pop
                 
             case .pop:
-                self.operation = UIApplication.shared.leftToRightLayoutDirection ? .pop : .push
+                self.operation = leftToRightLayoutDirection ? .pop : .push
                 
             default:
                 self.operation = nil
