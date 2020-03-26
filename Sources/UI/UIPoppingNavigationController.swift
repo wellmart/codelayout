@@ -45,7 +45,7 @@ public final class UIPoppingNavigationController: UINavigationController {
             return
         }
         
-        let percent = panGesture.translation(in: view).x / view.bounds.size.width
+        let percent = abs(panGesture.translation(in: view).x / view.bounds.size.width)
         
         if panGesture.state == .began {
             interactiveTransition = UIPercentDrivenInteractiveTransition()
