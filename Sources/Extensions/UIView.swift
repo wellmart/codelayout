@@ -37,12 +37,12 @@ public extension UIView {
     }
     
     @inlinable
-    var safeAreaRightAnchor: NSLayoutXAxisAnchor {
+    var safeAreaTrailingAnchor: NSLayoutXAxisAnchor {
         if #available(iOS 11, *) {
-            return safeAreaLayoutGuide.rightAnchor
+            return safeAreaLayoutGuide.trailingAnchor
         }
         
-        return rightAnchor
+        return trailingAnchor
     }
     
     @inlinable
@@ -55,12 +55,12 @@ public extension UIView {
     }
     
     @inlinable
-    var safeAreaLeftAnchor: NSLayoutXAxisAnchor {
+    var safeAreaLeadingAnchor: NSLayoutXAxisAnchor {
         if #available(iOS 11, *) {
-            return safeAreaLayoutGuide.leftAnchor
+            return safeAreaLayoutGuide.leadingAnchor
         }
         
-        return leftAnchor
+        return leadingAnchor
     }
 }
 
@@ -82,14 +82,14 @@ public extension UIView {
     
     @inlinable
     @discardableResult
-    func anchor(right constant: CGFloat) -> NSLayoutConstraint {
-        return anchor(right: superview!.rightAnchor, constant: constant)
+    func anchor(trailing constant: CGFloat) -> NSLayoutConstraint {
+        return anchor(trailing: superview!.trailingAnchor, constant: constant)
     }
     
     @inlinable
     @discardableResult
-    func anchor(right anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
-        return rightAnchor.constraint(equalTo: anchor, constant: -constant).apply {
+    func anchor(trailing anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return trailingAnchor.constraint(equalTo: anchor, constant: -constant).apply {
             $0.isActive = true
         }
     }
@@ -110,14 +110,14 @@ public extension UIView {
     
     @inlinable
     @discardableResult
-    func anchor(left constant: CGFloat) -> NSLayoutConstraint {
-        return anchor(left: superview!.leftAnchor, constant: constant)
+    func anchor(leading constant: CGFloat) -> NSLayoutConstraint {
+        return anchor(leading: superview!.leadingAnchor, constant: constant)
     }
     
     @inlinable
     @discardableResult
-    func anchor(left anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
-        return leftAnchor.constraint(equalTo: anchor, constant: constant).apply {
+    func anchor(leading anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return leadingAnchor.constraint(equalTo: anchor, constant: constant).apply {
             $0.isActive = true
         }
     }
