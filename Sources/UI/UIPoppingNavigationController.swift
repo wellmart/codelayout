@@ -91,22 +91,23 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
         }
         
         func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-            guard let fromView = transitionContext.viewController(forKey: .from)?.view, let toView = transitionContext.viewController(forKey: .to)?.view else {
-                return
+            guard
+                let fromView = transitionContext.viewController(forKey: .from)?.view,
+                let toView = transitionContext.viewController(forKey: .to)?.view else {
+                    return
             }
             
             let width = transitionContext.containerView.frame.width
-            
-            let transform = CGAffineTransform(translationX: width, y: 0)
-            let transformBack = CGAffineTransform(translationX: -width , y: 0)
+            let toTransform = CGAffineTransform(translationX: width, y: 0)
+            let fromTransform = CGAffineTransform(translationX: -width , y: 0)
             
             if operation == .push {
-                toView.transform = transform
+                toView.transform = toTransform
                 transitionContext.containerView.addSubview(toView)
                 
                 UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
                     toView.transform = .identity
-                    fromView.transform = transformBack
+                    fromView.transform = fromTransform
                 }) { _ in
                     toView.transform = .identity
                     fromView.transform = .identity
@@ -115,12 +116,12 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
                 }
             }
             else if operation == .pop {
-                toView.transform = transformBack
+                toView.transform = fromTransform
                 transitionContext.containerView.insertSubview(toView, belowSubview: fromView)
                 
                 UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
                     toView.transform = .identity
-                    fromView.transform = transform
+                    fromView.transform = toTransform
                 }) { _ in
                     toView.transform = .identity
                     fromView.transform = .identity
