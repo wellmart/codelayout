@@ -23,6 +23,7 @@
 //
 
 import UIKit
+import Adrenaline
 
 public enum ImpactUtils {
     @inlinable
@@ -31,7 +32,7 @@ public enum ImpactUtils {
             return
         }
         
-        DispatchQueue.main.async {
+        DispatchQueue.mainIfNeedsAsync {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
         }
     }
@@ -42,7 +43,7 @@ public enum ImpactUtils {
             return
         }
         
-        DispatchQueue.main.async {
+        DispatchQueue.mainIfNeedsAsync {
             UISelectionFeedbackGenerator().selectionChanged()
         }
     }
@@ -53,7 +54,7 @@ public enum ImpactUtils {
             return
         }
         
-        DispatchQueue.main.async {
+        DispatchQueue.mainIfNeedsAsync {
             UINotificationFeedbackGenerator().notificationOccurred(.success)
         }
     }

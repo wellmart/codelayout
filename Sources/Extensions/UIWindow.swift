@@ -26,21 +26,8 @@ import UIKit
 import Adrenaline
 
 public extension UIWindow {
-    private struct Appearance {
-        static var `default`: UIWindowAppearance?
-    }
+    static var appearance: UIWindowAppearance?
     
-    static var appearance: UIWindowAppearance? {
-        get {
-            return Appearance.default
-        }
-        set {
-            Appearance.default = newValue
-        }
-    }
-}
-
-public extension UIWindow {
     @inlinable
     convenience init(rootViewController: UIViewController) {
         self.init(frame: UIScreen.main.bounds)
@@ -53,20 +40,20 @@ public extension UIWindow {
         
         appearance?.apply(on: self)
         makeKeyAndVisible()
-
+        
         DispatchQueue.main.async {
             self.preloadKeyboard()
         }
     }
-
+    
     func preloadKeyboard() {
         let textField = UITextField().apply {
             addSubview($0)
         }
-
+        
         textField.becomeFirstResponder()
         textField.resignFirstResponder()
-
+        
         textField.removeFromSuperview()
     }
 }
