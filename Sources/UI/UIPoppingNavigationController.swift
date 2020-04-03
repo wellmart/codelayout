@@ -30,12 +30,12 @@ public final class UIPoppingNavigationController: UINavigationController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        delegate = self
-        
         view.addGestureRecognizer(UIScreenEdgePanGestureRecognizer(target: self, action: #selector(didPan)).apply {
             $0.edges = UIApplication.shared.leftToRightLayoutDirection ? .left : .right
             $0.maximumNumberOfTouches = 1
         })
+        
+        delegate = self
     }
     
     @objc
