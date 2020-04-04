@@ -65,6 +65,7 @@ public extension UIWindowAppearance {
             
             collectionView.showsVerticalScrollIndicator = false
             collectionView.alwaysBounceVertical = true
+            collectionView.clipsToBounds = false
             
         case let label as UILabel:
             label.font = font
