@@ -40,75 +40,59 @@ public extension UIWindowAppearance {
     func apply<T: UIView>(on view: T) {
         switch view {
         case let window as UIWindow:
-            window.apply {
-                $0.backgroundColor = backgroundColor
-                $0.tintColor = tintColor
-            }
+            window.backgroundColor = backgroundColor
+            window.tintColor = tintColor
             
         case let tabBar as UITabBar:
-            tabBar.apply {
-                $0.barTintColor = backgroundColor
-                $0.tintColor = textColor
-                
-                $0.isTranslucent = false
-                $0.backgroundImage = UIImage()
-                $0.shadowImage = UIImage()
-            }
+            tabBar.barTintColor = backgroundColor
+            tabBar.tintColor = textColor
+            
+            tabBar.isTranslucent = false
+            tabBar.backgroundImage = UIImage()
+            tabBar.shadowImage = UIImage()
             
         case let navigationBar as UINavigationBar:
-            navigationBar.apply {
-                $0.barTintColor = backgroundColor
-                $0.titleTextAttributes = [.font: font, .foregroundColor: textColor]
-                
-                $0.isTranslucent = false
-                $0.shadowImage = UIImage()
-                
-                $0.setBackgroundImage(UIImage(), for: .default)
-            }
+            navigationBar.barTintColor = backgroundColor
+            navigationBar.titleTextAttributes = [.font: font, .foregroundColor: textColor]
+            
+            navigationBar.isTranslucent = false
+            navigationBar.shadowImage = UIImage()
+            
+            navigationBar.setBackgroundImage(UIImage(), for: .default)
             
         case let collectionView as UICollectionView:
-            collectionView.apply {
-                $0.backgroundColor = backgroundColor
-                
-                $0.showsVerticalScrollIndicator = false
-                $0.alwaysBounceVertical = true
-            }
+            collectionView.backgroundColor = backgroundColor
+            
+            collectionView.showsVerticalScrollIndicator = false
+            collectionView.alwaysBounceVertical = true
             
         case let label as UILabel:
-            label.apply {
-                $0.font = font
-                $0.textColor = textColor
-            }
+            label.font = font
+            label.textColor = textColor
             
         case let button as UIButton:
             let highlightedImage = tintColor.image()
             
-            button.apply {
-                $0.setTitleColor(textColor, for: .normal)
-                $0.setTitleColor(highlightedTextColor, for: .highlighted)
-                $0.setTitleColor(highlightedTextColor, for: .selected)
-                $0.setTitleColor(highlightedTextColor, for: [.highlighted, .selected])
-                
-                $0.setBackgroundImage(highlightedImage, for: .highlighted)
-                $0.setBackgroundImage(highlightedImage, for: .selected)
-                $0.setBackgroundImage(highlightedImage, for: [.highlighted, .selected])
-                
-                $0.corner(radius: buttonCornerRadius)
-            }
+            button.setTitleColor(textColor, for: .normal)
+            button.setTitleColor(highlightedTextColor, for: .highlighted)
+            button.setTitleColor(highlightedTextColor, for: .selected)
+            button.setTitleColor(highlightedTextColor, for: [.highlighted, .selected])
+            
+            button.setBackgroundImage(highlightedImage, for: .highlighted)
+            button.setBackgroundImage(highlightedImage, for: .selected)
+            button.setBackgroundImage(highlightedImage, for: [.highlighted, .selected])
+            
+            button.corner(radius: buttonCornerRadius)
             
         case let textField as UITextField:
-            textField.apply {
-                $0.font = textFieldFont
-                $0.textColor = textColor
-                
-                $0.autocorrectionType = .no
-            }
+            textField.font = textFieldFont
+            textField.textColor = textColor
+            
+            textField.autocorrectionType = .no
             
         case let switchControl as UISwitch:
-            switchControl.apply {
-                $0.onTintColor = tintColor
-                $0.thumbTintColor = backgroundColor
-            }
+            switchControl.onTintColor = tintColor
+            switchControl.thumbTintColor = backgroundColor
             
         default: break
         }
