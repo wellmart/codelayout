@@ -277,16 +277,6 @@ public extension UIView {
     }
     
     @inlinable
-    func addScreenEdgePanGesture(target: Any, action: Selector?, edges: UIRectEdge, delegate: UIGestureRecognizerDelegate? = nil) {
-        addGestureRecognizer(UIScreenEdgePanGestureRecognizer(target: target, action: action).apply {
-            $0.maximumNumberOfTouches = 1
-            
-            $0.edges = edges
-            $0.delegate = delegate
-        })
-    }
-    
-    @inlinable
     func addTapGesture(target: Any, action: Selector?, delegate: UIGestureRecognizerDelegate? = nil) {
         addGestureRecognizer(UITapGestureRecognizer(target: target, action: action).apply {
             $0.numberOfTapsRequired = 1
