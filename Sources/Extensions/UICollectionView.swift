@@ -43,10 +43,6 @@ public extension UICollectionView {
     
     @inlinable
     func resetData(animated: Bool = false, respectSafeAreaIfSupported respectSafeArea: Bool = false) {
-        guard isScrollEnabled else {
-            return
-        }
-        
         let y: CGFloat
         
         if #available(iOS 11, *), !respectSafeArea {
@@ -56,13 +52,7 @@ public extension UICollectionView {
             y = 0
         }
         
-        isScrollEnabled = false
         reloadData()
-        
-        UIView.animate(withDuration: 0, animations: {
-            self.setContentOffset(CGPoint(x: 0, y: y), animated: animated)
-        }) { _ in
-            self.isScrollEnabled = true
-        }
+        setContentOffset(CGPoint(x: 0, y: y), animated: animated)
     }
 }
