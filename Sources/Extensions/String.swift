@@ -28,7 +28,7 @@ public extension String {
     @inlinable
     func strikethrough() -> NSAttributedString {
         return NSMutableAttributedString(string: self).apply {
-            $0.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.patternDash.rawValue, range: NSMakeRange(0, count))
+            $0.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue | NSUnderlineStyle.patternDash.rawValue, range: NSMakeRange(0, count))
         }
     }
 }
