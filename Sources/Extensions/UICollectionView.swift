@@ -40,19 +40,4 @@ public extension UICollectionView {
     func register<T: UICollectionViewCell & ViewReusable>(_ type: T.Type) {
         register(type, forCellWithReuseIdentifier: type.identifier)
     }
-    
-    @inlinable
-    func resetData(animated: Bool = false, respectSafeAreaIfSupported respectSafeArea: Bool = false) {
-        let y: CGFloat
-        
-        if #available(iOS 11, *), !respectSafeArea {
-            y = -safeAreaInsets.top
-        }
-        else {
-            y = 0
-        }
-        
-        reloadData()
-        setContentOffset(CGPoint(x: 0, y: y), animated: animated)
-    }
 }
