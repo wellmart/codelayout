@@ -31,7 +31,6 @@ public extension UIWindow {
     @inlinable
     convenience init(rootViewController: UIViewController) {
         self.init(frame: UIScreen.main.bounds)
-        
         let appearance = UIWindow.appearance
         
         self.rootViewController = UIPoppingNavigationController(rootViewController: rootViewController).apply {
