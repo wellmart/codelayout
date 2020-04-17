@@ -55,7 +55,7 @@ public final class UIPoppingNavigationController: UINavigationController {
             interactiveTransition?.update(percent)
         }
         else if panGesture.state == .ended {
-            if percent > 0.25 {
+            if percent > 0.25 || panGesture.velocity(in: view).y > 0 {
                 interactiveTransition?.finish()
             }
             else {

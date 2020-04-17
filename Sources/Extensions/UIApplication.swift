@@ -80,14 +80,4 @@ public extension UIApplication {
     var leftToRightLayoutDirection: Bool {
         return userInterfaceLayoutDirection != .rightToLeft
     }
-    
-    @inlinable
-    @available(iOS 9, *)
-    var safeAreaInsets: UIEdgeInsets? {
-        if #available(iOS 11, *) {
-            return keyWindow?.rootViewController?.view.safeAreaInsets
-        }
-        
-        return nil
-    }
 }
