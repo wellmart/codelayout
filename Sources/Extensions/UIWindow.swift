@@ -38,13 +38,12 @@ public extension UIWindow {
         }
         
         appearance?.apply(on: self)
-        makeKeyAndVisible()
         
-        DispatchQueue.main.async {
-            self.preloadKeyboard()
-        }
+        makeKeyAndVisible()
+        preloadKeyboard()
     }
     
+    @inlinable
     func preloadKeyboard() {
         let textField = UITextField().apply {
             addSubview($0)

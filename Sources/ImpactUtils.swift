@@ -25,6 +25,7 @@
 import UIKit
 import Adrenaline
 
+@frozen
 public enum ImpactUtils {
     @inlinable
     public static func error() {
