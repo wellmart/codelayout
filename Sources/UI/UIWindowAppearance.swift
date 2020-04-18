@@ -100,7 +100,7 @@ public extension UIWindowAppearance {
     }
     
     @inlinable
-    func createNavigationBarButton(title: String, font: UIFont? = nil, baselineOffset: CGFloat = 0, target: Any?, action: Selector) -> UIBarButtonItem? {
+    func createNavigationBarButton(title: String, font: UIFont? = nil, baselineOffset: CGFloat = 0, target: AnyObject?, action: Selector) -> UIBarButtonItem? {
         let attributes: [NSAttributedString.Key: Any] = [.font: font ?? self.font, .foregroundColor: textColor, .baselineOffset: baselineOffset]
         
         return UIBarButtonItem(title: title, style: .plain, target: target, action: action).apply {
