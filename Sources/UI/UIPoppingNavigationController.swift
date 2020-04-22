@@ -92,10 +92,10 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
             var width = transitionContext.containerView.frame.width
             
             if operation == .pop {
-                width = -width
                 transitionContext.containerView.insertSubview(toView, belowSubview: fromView)
             }
             else {
+                width = -width
                 transitionContext.containerView.addSubview(toView)
             }
             
