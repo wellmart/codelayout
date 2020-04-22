@@ -89,24 +89,37 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
                     return
             }
             
-            var width = transitionContext.containerView.frame.width
-            
+            let width = transitionContext.containerView.frame.width
+            let toTransform = CGAffineTransform(translationX: width, y: 0)
+            let fromTransform = CGAffineTransform(translationX: -width , y: 0)
+
             if operation == .pop {
+                toView.transform = fromTransform
                 transitionContext.containerView.insertSubview(toView, belowSubview: fromView)
+
+                UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+                    toView.transform = .identity
+                    fromView.transform = toTransform
+                }) { _ in
+                    //toView.transform = .identity
+                    //fromView.transform = .identity
+
+                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                }
             }
             else {
-                width = -width
+                toView.transform = toTransform
                 transitionContext.containerView.addSubview(toView)
-            }
-            
-            toView.transform = CGAffineTransform(translationX: -width , y: 0)
-            fromView.transform = .identity
-            
-            UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-                toView.transform = .identity
-                fromView.transform = CGAffineTransform(translationX: width, y: 0)
-            }) { _ in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+
+                UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+                    toView.transform = .identity
+                    fromView.transform = fromTransform
+                }) { _ in
+                    //toView.transform = .identity
+                    //fromView.transform = .identity
+
+                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                }
             }
         }
     }
