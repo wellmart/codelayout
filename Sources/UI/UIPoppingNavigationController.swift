@@ -47,14 +47,15 @@ public final class UIPoppingNavigationController: UINavigationController {
         
         let percent = abs(panGesture.translation(in: view).x / view.bounds.size.width)
         
-        if panGesture.state == .began {
+        switch panGesture.state {
+        case .began:
             interactiveTransition = UIPercentDrivenInteractiveTransition()
             popViewController(animated: true)
-        }
-        else if panGesture.state == .changed {
+            
+        case .changed:
             interactiveTransition?.update(percent)
-        }
-        else if panGesture.state == .ended {
+            
+        case .ended:
             if percent > 0.25 || panGesture.velocity(in: view).y > 0 {
                 interactiveTransition?.finish()
             }
@@ -63,27 +64,18 @@ public final class UIPoppingNavigationController: UINavigationController {
             }
             
             interactiveTransition = nil
+            
+        default: break
         }
     }
 }
 
 extension UIPoppingNavigationController: UINavigationControllerDelegate {
     private final class AnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
-        private let operation: Operation?
+        private let operation: Operation
         
         init(operation: Operation) {
-            let leftToRightLayoutDirection = UIApplication.shared.leftToRightLayoutDirection
-            
-            switch operation {
-            case .push:
-                self.operation = leftToRightLayoutDirection ? .push : .pop
-                
-            case .pop:
-                self.operation = leftToRightLayoutDirection ? .pop : .push
-                
-            default:
-                self.operation = nil
-            }
+            self.operation = !UIApplication.shared.leftToRightLayoutDirection ? operation : (operation != .pop ? .pop : .push)
         }
         
         func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -97,37 +89,24 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
                     return
             }
             
-            let width = transitionContext.containerView.frame.width
-            let toTransform = CGAffineTransform(translationX: width, y: 0)
-            let fromTransform = CGAffineTransform(translationX: -width , y: 0)
+            var width = transitionContext.containerView.frame.width
             
-            if operation == .push {
-                toView.transform = toTransform
-                transitionContext.containerView.addSubview(toView)
-                
-                UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-                    toView.transform = .identity
-                    fromView.transform = fromTransform
-                }) { _ in
-                    toView.transform = .identity
-                    fromView.transform = .identity
-                    
-                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-                }
-            }
-            else if operation == .pop {
-                toView.transform = fromTransform
+            if operation == .pop {
+                width = -width
                 transitionContext.containerView.insertSubview(toView, belowSubview: fromView)
-                
-                UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-                    toView.transform = .identity
-                    fromView.transform = toTransform
-                }) { _ in
-                    toView.transform = .identity
-                    fromView.transform = .identity
-                    
-                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-                }
+            }
+            else {
+                transitionContext.containerView.addSubview(toView)
+            }
+            
+            toView.transform = CGAffineTransform(translationX: -width , y: 0)
+            fromView.transform = .identity
+            
+            UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+                toView.transform = .identity
+                fromView.transform = CGAffineTransform(translationX: width, y: 0)
+            }) { _ in
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
     }

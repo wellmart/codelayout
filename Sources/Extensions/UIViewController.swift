@@ -26,7 +26,7 @@ import UIKit
 
 public extension UIViewController {
     @inlinable
-    func firstParent<T: UIViewController>(of: T.Type) -> T? {
+    func closestParent<T: UIViewController>(of: T.Type) -> T? {
         guard let parent = parent else {
             return nil
         }
@@ -35,6 +35,6 @@ public extension UIViewController {
             return parent
         }
         
-        return parent.firstParent(of: T.self)
+        return parent.closestParent(of: T.self)
     }
 }

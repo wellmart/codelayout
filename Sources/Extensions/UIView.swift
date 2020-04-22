@@ -289,13 +289,6 @@ public extension UIView {
 
 public extension UIView {
     @inlinable
-    static func animate(_ animation: @autoclosure @escaping () -> Void, duration: TimeInterval = 0.15) {
-        animate(withDuration: duration, animations: animation)
-    }
-}
-
-public extension UIView {
-    @inlinable
     func corner(radius: CGFloat) {
         layer.cornerRadius = radius
         layer.masksToBounds = true
