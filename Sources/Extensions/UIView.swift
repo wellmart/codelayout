@@ -281,7 +281,6 @@ public extension UIView {
         addGestureRecognizer(UITapGestureRecognizer(target: target, action: action).apply {
             $0.numberOfTapsRequired = 1
             $0.numberOfTouchesRequired = 1
-            
             $0.delegate = delegate
         })
     }

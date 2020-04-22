@@ -51,7 +51,6 @@ public extension UIWindow {
         
         textField.becomeFirstResponder()
         textField.resignFirstResponder()
-        
         textField.removeFromSuperview()
     }
 }

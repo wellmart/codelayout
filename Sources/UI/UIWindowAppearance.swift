@@ -46,7 +46,6 @@ public extension UIWindowAppearance {
         case let tabBar as UITabBar:
             tabBar.barTintColor = backgroundColor
             tabBar.tintColor = textColor
-            
             tabBar.isTranslucent = false
             tabBar.backgroundImage = UIImage()
             tabBar.shadowImage = UIImage()
@@ -54,7 +53,6 @@ public extension UIWindowAppearance {
         case let navigationBar as UINavigationBar:
             navigationBar.barTintColor = backgroundColor
             navigationBar.titleTextAttributes = [.font: font, .foregroundColor: textColor]
-            
             navigationBar.isTranslucent = false
             navigationBar.shadowImage = UIImage()
             
@@ -62,7 +60,6 @@ public extension UIWindowAppearance {
             
         case let collectionView as UICollectionView:
             collectionView.backgroundColor = backgroundColor
-            
             collectionView.showsVerticalScrollIndicator = false
             collectionView.alwaysBounceVertical = true
             collectionView.clipsToBounds = false
@@ -88,7 +85,6 @@ public extension UIWindowAppearance {
         case let textField as UITextField:
             textField.font = textFieldFont
             textField.textColor = textColor
-            
             textField.autocorrectionType = .no
             
         case let switchControl as UISwitch:
