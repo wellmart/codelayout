@@ -30,6 +30,7 @@ public protocol UIWindowAppearance {
     var cornerRadius: CGFloat { get }
     var font: UIFont { get }
     var highlightedTextColor: UIColor { get }
+    var largeTitleFont: UIFont { get }
     var textColor: UIColor { get }
     var textFieldFont: UIFont { get }
     var tintColor: UIColor { get }
@@ -57,6 +58,11 @@ public extension UIWindowAppearance {
             navigationBar.shadowImage = UIImage()
             
             navigationBar.setBackgroundImage(UIImage(), for: .default)
+            
+            if #available(iOS 11, *) {
+                navigationBar.prefersLargeTitles = true
+                navigationBar.largeTitleTextAttributes = [.font: largeTitleFont, .foregroundColor: textColor]
+            }
             
         case let collectionView as UICollectionView:
             collectionView.backgroundColor = backgroundColor
@@ -108,10 +114,21 @@ public extension UIWindowAppearance {
     }
     
     @inlinable
-    func createTabBarButton(title: String, font: UIFont, positionVertical: CGFloat = 0) -> UITabBarItem {
-        return UITabBarItem(title: title, image: nil, selectedImage: nil).apply {
+    func createTabBarButton(title: String, font: UIFont, badgeFont: UIFont? = nil, positionVertical: CGFloat = 0) -> UITabBarItem {
+        let tabBarItem = UITabBarItem(title: title, image: nil, selectedImage: nil).apply {
             $0.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -positionVertical)
             $0.setTitleTextAttributes([.font: font], for: .normal)
         }
+        
+        if #available(iOS 10, *) {
+            tabBarItem.badgeColor = tintColor
+            
+            if let badgeFont = badgeFont {
+                tabBarItem.setBadgeTextAttributes([.font: badgeFont], for: .normal)
+                tabBarItem.setBadgeTextAttributes([.font: badgeFont], for: .selected)
+            }
+        }
+        
+        return tabBarItem
     }
 }
