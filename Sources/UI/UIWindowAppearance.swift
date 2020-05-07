@@ -24,16 +24,19 @@
 
 import UIKit
 
+@objc
 public protocol UIWindowAppearance {
     var backgroundColor: UIColor { get }
     var buttonCornerRadius: CGFloat { get }
     var cornerRadius: CGFloat { get }
     var font: UIFont { get }
     var highlightedTextColor: UIColor { get }
-    var largeTitleFont: UIFont { get }
     var textColor: UIColor { get }
     var textFieldFont: UIFont { get }
     var tintColor: UIColor { get }
+    
+    @objc
+    optional var largeTitleFont: UIFont { get }
 }
 
 public extension UIWindowAppearance {
@@ -59,8 +62,7 @@ public extension UIWindowAppearance {
             
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             
-            if #available(iOS 11, *) {
-                navigationBar.prefersLargeTitles = true
+            if #available(iOS 11, *), let largeTitleFont = largeTitleFont {
                 navigationBar.largeTitleTextAttributes = [.font: largeTitleFont, .foregroundColor: textColor]
             }
             
