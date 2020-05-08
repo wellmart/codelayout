@@ -37,59 +37,99 @@ public protocol UIWindowAppearance {
 
 public extension UIWindowAppearance {
     @inlinable
-    func apply<T: UIView>(on view: T) {
+    func apply(on window: UIWindow) {
+        window.backgroundColor = backgroundColor
+        window.tintColor = tintColor
+    }
+    
+    @inlinable
+    func apply(on tabBar: UITabBar) {
+        tabBar.barTintColor = backgroundColor
+        tabBar.tintColor = textColor
+        tabBar.isTranslucent = false
+        tabBar.backgroundImage = UIImage()
+        tabBar.shadowImage = UIImage()
+    }
+    
+    @inlinable
+    func apply(on navigationBar: UINavigationBar) {
+        navigationBar.barTintColor = backgroundColor
+        navigationBar.titleTextAttributes = [.font: font, .foregroundColor: textColor]
+        navigationBar.isTranslucent = false
+        navigationBar.shadowImage = UIImage()
+        
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+    }
+    
+    @inlinable
+    func apply(on collectionView: UICollectionView) {
+        collectionView.backgroundColor = backgroundColor
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.alwaysBounceVertical = true
+        collectionView.clipsToBounds = false
+    }
+    
+    @inlinable
+    func apply(on label: UILabel) {
+        label.font = font
+        label.textColor = textColor
+    }
+    
+    @inlinable
+    func apply(on button: UIButton) {
+        let highlightedImage = tintColor.image()
+        
+        button.setTitleColor(textColor, for: .normal)
+        button.setTitleColor(highlightedTextColor, for: .highlighted)
+        button.setTitleColor(highlightedTextColor, for: .selected)
+        button.setTitleColor(highlightedTextColor, for: [.highlighted, .selected])
+        
+        button.setBackgroundImage(highlightedImage, for: .highlighted)
+        button.setBackgroundImage(highlightedImage, for: .selected)
+        button.setBackgroundImage(highlightedImage, for: [.highlighted, .selected])
+        
+        button.corner(radius: buttonCornerRadius)
+    }
+    
+    @inlinable
+    func apply(on textField: UITextField) {
+        textField.font = textFieldFont
+        textField.textColor = textColor
+        textField.autocorrectionType = .no
+    }
+    
+    @inlinable
+    func apply(on switchControl: UISwitch) {
+        switchControl.onTintColor = tintColor
+        switchControl.thumbTintColor = backgroundColor
+    }
+    
+    @inlinable
+    func apply(on view: UIView) {
         switch view {
         case let window as UIWindow:
-            window.backgroundColor = backgroundColor
-            window.tintColor = tintColor
+            apply(on: window)
             
         case let tabBar as UITabBar:
-            tabBar.barTintColor = backgroundColor
-            tabBar.tintColor = textColor
-            tabBar.isTranslucent = false
-            tabBar.backgroundImage = UIImage()
-            tabBar.shadowImage = UIImage()
+            apply(on: tabBar)
             
         case let navigationBar as UINavigationBar:
-            navigationBar.barTintColor = backgroundColor
-            navigationBar.titleTextAttributes = [.font: font, .foregroundColor: textColor]
-            navigationBar.isTranslucent = false
-            navigationBar.shadowImage = UIImage()
-            
-            navigationBar.setBackgroundImage(UIImage(), for: .default)
+            apply(on: navigationBar)
             
         case let collectionView as UICollectionView:
-            collectionView.backgroundColor = backgroundColor
-            collectionView.showsVerticalScrollIndicator = false
-            collectionView.alwaysBounceVertical = true
-            collectionView.clipsToBounds = false
+            apply(on: collectionView)
             
         case let label as UILabel:
-            label.font = font
-            label.textColor = textColor
+            apply(on: label)
             
         case let button as UIButton:
-            let highlightedImage = tintColor.image()
-            
-            button.setTitleColor(textColor, for: .normal)
-            button.setTitleColor(highlightedTextColor, for: .highlighted)
-            button.setTitleColor(highlightedTextColor, for: .selected)
-            button.setTitleColor(highlightedTextColor, for: [.highlighted, .selected])
-            
-            button.setBackgroundImage(highlightedImage, for: .highlighted)
-            button.setBackgroundImage(highlightedImage, for: .selected)
-            button.setBackgroundImage(highlightedImage, for: [.highlighted, .selected])
-            
-            button.corner(radius: buttonCornerRadius)
+            apply(on: button)
             
         case let textField as UITextField:
-            textField.font = textFieldFont
-            textField.textColor = textColor
-            textField.autocorrectionType = .no
+            apply(on: textField)
             
         case let switchControl as UISwitch:
-            switchControl.onTintColor = tintColor
-            switchControl.thumbTintColor = backgroundColor
+            apply(on: switchControl)
             
         default: break
         }
