@@ -24,7 +24,6 @@
 
 import UIKit
 
-@objc
 public protocol UIWindowAppearance {
     var backgroundColor: UIColor { get }
     var buttonCornerRadius: CGFloat { get }
@@ -34,9 +33,6 @@ public protocol UIWindowAppearance {
     var textColor: UIColor { get }
     var textFieldFont: UIFont { get }
     var tintColor: UIColor { get }
-    
-    @objc
-    optional var largeTitleFont: UIFont { get }
 }
 
 public extension UIWindowAppearance {
@@ -61,10 +57,6 @@ public extension UIWindowAppearance {
             navigationBar.shadowImage = UIImage()
             
             navigationBar.setBackgroundImage(UIImage(), for: .default)
-            
-            if #available(iOS 11, *), let largeTitleFont = largeTitleFont {
-                navigationBar.largeTitleTextAttributes = [.font: largeTitleFont, .foregroundColor: textColor]
-            }
             
         case let collectionView as UICollectionView:
             collectionView.backgroundColor = backgroundColor
