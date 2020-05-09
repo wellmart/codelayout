@@ -25,7 +25,10 @@
 import UIKit
 
 public extension CGFloat {
-    static let baseDPI: CGFloat = 463
+    @inlinable
+    static var baseDPI: CGFloat {
+        return 463
+    }
     
     @inlinable
     var dp: CGFloat {

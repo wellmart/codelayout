@@ -27,7 +27,6 @@ import UIKit
 public extension UIFont {
     @inlinable
     func adjustedByContentMultiplier() -> UIFont {
-        return UIFont(descriptor: fontDescriptor,
-                      size: pointSize * UIApplication.shared.preferredContentMultiplier)
+        return UIFont(descriptor: fontDescriptor, size: pointSize * UIApplication.shared.preferredContentMultiplier)
     }
 }
