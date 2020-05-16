@@ -29,8 +29,8 @@ public extension UIColor {
     @inlinable
     convenience init(light: UIColor, dark: UIColor) {
         if #available(iOS 13, *) {
-            self.init {
-                return $0.userInterfaceStyle != .dark ? light : dark
+            self.init { traitCollection in
+                return traitCollection.userInterfaceStyle != .dark ? light : dark
             }
         }
         else {
