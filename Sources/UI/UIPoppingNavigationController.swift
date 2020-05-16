@@ -56,7 +56,7 @@ public final class UIPoppingNavigationController: UINavigationController {
             interactiveTransition?.update(percent)
             
         case .ended:
-            if percent > 0.25 || panGesture.velocity(in: view).y > 0 {
+            if percent > 0.25 || (percent > 0.15 && panGesture.velocity(in: view).y > 0) {
                 interactiveTransition?.finish()
             }
             else {
@@ -100,14 +100,14 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
             }
             
             toView.transform = CGAffineTransform(translationX: -width , y: 0)
-
+            
             UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
                 toView.transform = .identity
                 fromView.transform = CGAffineTransform(translationX: width, y: 0)
             }) { _ in
                 toView.transform = .identity
                 fromView.transform = .identity
-
+                
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
