@@ -49,7 +49,7 @@ public extension UIColor {
         
         if #available(iOS 10, *) {
             return UIGraphicsImageRenderer(size: size).image { context in
-                self.setFill()
+                setFill()
                 context.fill(rect)
             }
         }
