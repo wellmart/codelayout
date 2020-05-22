@@ -242,6 +242,30 @@ public extension UIView {
 public extension UIView {
     @inlinable
     @discardableResult
+    func addSublayer<T: CALayer>(_ type: T.Type, apply work: (T) -> Void) -> T {
+        return T().apply {
+            $0.contentsScale = UIScreen.main.scale
+            layer.addSublayer($0)
+            
+            work($0)
+        }
+    }
+    
+    @inlinable
+    func removeAllSublayers() {
+        guard let sublayers = layer.sublayers else {
+            return
+        }
+        
+        for sublayer in sublayers {
+            sublayer.removeFromSuperlayer()
+        }
+    }
+}
+
+public extension UIView {
+    @inlinable
+    @discardableResult
     func addSubview<T: UIView>(_ type: T.Type, apply work: (T) -> Void) -> T {
         return T().apply {
             $0.translatesAutoresizingMaskIntoConstraints = false
