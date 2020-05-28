@@ -95,7 +95,6 @@ public extension UIWindowAppearance {
     func apply(on textField: UITextField) {
         textField.font = textFieldFont
         textField.textColor = textColor
-        textField.autocorrectionType = .no
     }
     
     @inlinable
