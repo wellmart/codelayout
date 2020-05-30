@@ -24,9 +24,9 @@
 
 import UIKit
 
-public extension UILayoutPriority {
+public extension UITabBarItem {
     @inlinable
-    static var nineNineNine: UILayoutPriority {
-        return UILayoutPriority(999)
+    func setBadgeNumber(_ value: Int) {
+        badgeValue = value > 0 ? "\(value)" : nil
     }
 }
