@@ -38,9 +38,11 @@ public extension UIWindow {
         }
         
         appearance?.apply(on: self)
-        
         makeKeyAndVisible()
-        preloadKeyboard()
+        
+        DispatchQueue.main.async {
+            preloadKeyboard()
+        }
     }
     
     @inlinable
