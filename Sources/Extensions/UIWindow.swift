@@ -31,13 +31,16 @@ public extension UIWindow {
     @inlinable
     convenience init(rootViewController: UIViewController) {
         self.init(frame: UIScreen.main.bounds)
-        let appearance = UIWindow.appearance
         
-        self.rootViewController = UIPoppingNavigationController(rootViewController: rootViewController).apply {
-            appearance?.apply(on: $0.navigationBar)
+        guard let appearance = UIWindow.appearance else {
+            preconditionFailure("The appearance was not specified")
         }
         
-        appearance?.apply(on: self)
+        self.rootViewController = UIPoppingNavigationController(rootViewController: rootViewController).apply {
+            appearance.apply(on: $0.navigationBar)
+        }
+        
+        appearance.apply(on: self)
         makeKeyAndVisible()
         
         DispatchQueue.main.async {
