@@ -41,7 +41,7 @@ public extension UIWindow {
         makeKeyAndVisible()
         
         DispatchQueue.main.async {
-            preloadKeyboard()
+            self.preloadKeyboard()
         }
     }
     
