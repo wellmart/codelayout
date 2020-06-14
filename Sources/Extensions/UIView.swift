@@ -293,20 +293,28 @@ public extension UIView {
 
 public extension UIView {
     @inlinable
-    func addPanGesture(target: Any, action: Selector?, delegate: UIGestureRecognizerDelegate? = nil) {
-        addGestureRecognizer(UIPanGestureRecognizer(target: target, action: action).apply {
+    @discardableResult
+    func addPanGesture(target: Any, action: Selector?, delegate: UIGestureRecognizerDelegate? = nil) -> UIPanGestureRecognizer {
+        let recognizer = UIPanGestureRecognizer(target: target, action: action).apply {
             $0.maximumNumberOfTouches = 1
             $0.delegate = delegate
-        })
+        }
+        
+        addGestureRecognizer(recognizer)
+        return recognizer
     }
     
     @inlinable
-    func addTapGesture(target: Any, action: Selector?, delegate: UIGestureRecognizerDelegate? = nil) {
-        addGestureRecognizer(UITapGestureRecognizer(target: target, action: action).apply {
+    @discardableResult
+    func addTapGesture(target: Any, action: Selector?, delegate: UIGestureRecognizerDelegate? = nil) -> UITapGestureRecognizer {
+        let recognizer = UITapGestureRecognizer(target: target, action: action).apply {
             $0.numberOfTapsRequired = 1
             $0.numberOfTouchesRequired = 1
             $0.delegate = delegate
-        })
+        }
+        
+        addGestureRecognizer(recognizer)
+        return recognizer
     }
 }
 
