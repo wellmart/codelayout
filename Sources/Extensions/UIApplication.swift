@@ -36,21 +36,6 @@ public extension UIApplication {
     }
     
     @inlinable
-    static func topViewController(_ viewController: UIViewController? = shared.keyWindow?.rootViewController) -> UIViewController? {
-        if let navigationController = viewController as? UINavigationController {
-            return topViewController(navigationController.visibleViewController)
-        }
-        else if let tabBarController = viewController as? UITabBarController, let selectedViewController = tabBarController.selectedViewController {
-            return topViewController(selectedViewController)
-        }
-        else if let presentedViewController = viewController?.presentedViewController {
-            return topViewController(presentedViewController)
-        }
-        
-        return viewController
-    }
-    
-    @inlinable
     var leftToRightLayoutDirection: Bool {
         return userInterfaceLayoutDirection != .rightToLeft
     }

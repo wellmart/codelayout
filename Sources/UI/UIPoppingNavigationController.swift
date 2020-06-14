@@ -39,15 +39,15 @@ public final class UIPoppingNavigationController: UINavigationController {
     }
     
     @objc
-    private func didPan(_ panGesture: UIScreenEdgePanGestureRecognizer) {
-        guard let view = panGesture.view else {
+    private func didPan(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        guard let view = recognizer.view else {
             interactiveTransition = nil
             return
         }
         
-        let percent = abs(panGesture.translation(in: view).x / view.bounds.size.width)
+        let percent = abs(recognizer.translation(in: view).x / view.bounds.size.width)
         
-        switch panGesture.state {
+        switch recognizer.state {
         case .began:
             interactiveTransition = UIPercentDrivenInteractiveTransition()
             popViewController(animated: true)
@@ -56,7 +56,7 @@ public final class UIPoppingNavigationController: UINavigationController {
             interactiveTransition?.update(percent)
             
         case .ended:
-            if percent > 0.25 || (percent > 0.15 && panGesture.velocity(in: view).y > 0) {
+            if percent > 0.25 || (percent > 0.15 && recognizer.velocity(in: view).y > 0) {
                 interactiveTransition?.finish()
             }
             else {
