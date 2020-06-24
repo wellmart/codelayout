@@ -59,10 +59,6 @@ public extension UIWindowAppearance {
         navigationBar.shadowImage = UIImage()
         
         navigationBar.setBackgroundImage(backgroundColor.image(), for: .default)
-        
-//        if #available(iOS 11, *) {
-//            navigationBar.prefersLargeTitles = true
-//        }
     }
     
     @inlinable
@@ -71,10 +67,6 @@ public extension UIWindowAppearance {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.alwaysBounceVertical = true
         collectionView.clipsToBounds = false
-        
-//        if #available(iOS 11, *) {
-//            collectionView.contentInsetAdjustmentBehavior = .never
-//        }
     }
     
     @inlinable
