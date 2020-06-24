@@ -55,7 +55,7 @@ public extension UIWindowAppearance {
     func apply(on navigationBar: UINavigationBar) {
         navigationBar.barTintColor = backgroundColor
         navigationBar.titleTextAttributes = [.font: font, .foregroundColor: textColor]
-        //navigationBar.isTranslucent = false
+        navigationBar.isTranslucent = false
         navigationBar.shadowImage = UIImage()
         
         if #available(iOS 11.0, *) {
@@ -71,6 +71,10 @@ public extension UIWindowAppearance {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.alwaysBounceVertical = true
         collectionView.clipsToBounds = false
+        
+        if #available(iOS 11, *) {
+            collectionView.contentInsetAdjustmentBehavior = .never
+        }
     }
     
     @inlinable
