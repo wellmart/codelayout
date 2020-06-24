@@ -62,7 +62,7 @@ public extension UIWindowAppearance {
             navigationBar.prefersLargeTitles = true
         }
         
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.setBackgroundImage(backgroundColor.image(), for: .default)
     }
     
     @inlinable
