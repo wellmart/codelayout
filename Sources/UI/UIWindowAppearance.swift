@@ -58,7 +58,7 @@ public extension UIWindowAppearance {
         navigationBar.isTranslucent = false
         navigationBar.shadowImage = UIImage()
         
-        navigationBar.setBackgroundImage(backgroundColor.image(), for: .default)
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
     
     @inlinable
