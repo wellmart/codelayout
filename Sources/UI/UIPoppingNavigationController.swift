@@ -83,10 +83,9 @@ extension UIPoppingNavigationController: UINavigationControllerDelegate {
         }
         
         func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-            guard
-                let fromView = transitionContext.viewController(forKey: .from)?.view,
-                let toView = transitionContext.viewController(forKey: .to)?.view else {
-                    return
+            guard let fromView = transitionContext.viewController(forKey: .from)?.view,
+                  let toView = transitionContext.viewController(forKey: .to)?.view else {
+                return
             }
             
             var width = transitionContext.containerView.frame.width
