@@ -25,6 +25,12 @@
 import UIKit
 
 public extension UIApplication {
+    enum Environment {
+        case debug
+        case testFlight
+        case appStore
+    }
+    
     @inlinable
     @available(iOS 10, *)
     static func openSettings() {
@@ -34,6 +40,31 @@ public extension UIApplication {
         }
         
         shared.open(url)
+    }
+    
+    @inlinable
+    var environment: Environment {
+        #if DEBUG || targetEnvironment(simulator)
+        return .debug
+        #else
+        if Bundle.main.path(forResource: "embedded", ofType: "mobileprovision") != nil {
+            return .testFlight
+        }
+        
+        guard let url = Bundle.main.appStoreReceiptURL else {
+            return .debug
+        }
+        
+        if url.lastPathComponent.lowercased() == "sandboxreceipt" {
+            return .testFlight
+        }
+        
+        if url.path.lowercased().contains("simulator") {
+            return .debug
+        }
+        
+        return .appStore
+        #endif
     }
     
     @inlinable
