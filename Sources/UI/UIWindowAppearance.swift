@@ -38,7 +38,7 @@ public protocol UIWindowAppearance {
 public extension UIWindowAppearance {
     @inlinable
     func apply(on window: UIWindow) {
-        window.backgroundColor = backgroundColor
+        //window.backgroundColor = backgroundColor
         window.tintColor = tintColor
     }
     
