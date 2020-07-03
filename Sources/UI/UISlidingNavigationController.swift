@@ -27,7 +27,7 @@ import UIKit
 open class UISlidingNavigationController: UINavigationController {
     private var interactiveTransition: UIPercentDrivenInteractiveTransition?
     
-    public override func loadView() {
+    open override func loadView() {
         super.loadView()
         
         view.addGestureRecognizer(UIScreenEdgePanGestureRecognizer(target: self, action: #selector(didPan)).apply {
