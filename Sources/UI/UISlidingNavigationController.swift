@@ -24,7 +24,7 @@
 
 import UIKit
 
-public class UISlidingNavigationController: UINavigationController {
+open class UISlidingNavigationController: UINavigationController {
     private var interactiveTransition: UIPercentDrivenInteractiveTransition?
     
     public override func loadView() {
