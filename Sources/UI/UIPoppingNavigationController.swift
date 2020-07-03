@@ -25,6 +25,47 @@
 import UIKit
 
 public final class UIPoppingNavigationController: UINavigationController {
+    public final class AnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
+        private let operation: Operation
+        
+        public init(operation: Operation) {
+            self.operation = !UIApplication.shared.leftToRightLayoutDirection ? operation : (operation != .pop ? .pop : .push)
+        }
+        
+        public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+            return 0.25
+        }
+        
+        public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+            guard let fromView = transitionContext.viewController(forKey: .from)?.view,
+                  let toView = transitionContext.viewController(forKey: .to)?.view else {
+                return
+            }
+            
+            var width = transitionContext.containerView.frame.width
+            
+            if operation == .pop {
+                width = -width
+                transitionContext.containerView.insertSubview(toView, belowSubview: fromView)
+            }
+            else {
+                transitionContext.containerView.addSubview(toView)
+            }
+            
+            toView.transform = CGAffineTransform(translationX: -width , y: 0)
+            
+            UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+                toView.transform = .identity
+                fromView.transform = CGAffineTransform(translationX: width, y: 0)
+            }) { _ in
+                toView.transform = .identity
+                fromView.transform = .identity
+                
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            }
+        }
+    }
+    
     private var interactiveTransition: UIPercentDrivenInteractiveTransition?
     
     public override func loadView() {
@@ -71,47 +112,6 @@ public final class UIPoppingNavigationController: UINavigationController {
 }
 
 extension UIPoppingNavigationController: UINavigationControllerDelegate {
-    private final class AnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
-        private let operation: Operation
-        
-        init(operation: Operation) {
-            self.operation = !UIApplication.shared.leftToRightLayoutDirection ? operation : (operation != .pop ? .pop : .push)
-        }
-        
-        func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-            return 0.25
-        }
-        
-        func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-            guard let fromView = transitionContext.viewController(forKey: .from)?.view,
-                  let toView = transitionContext.viewController(forKey: .to)?.view else {
-                return
-            }
-            
-            var width = transitionContext.containerView.frame.width
-            
-            if operation == .pop {
-                width = -width
-                transitionContext.containerView.insertSubview(toView, belowSubview: fromView)
-            }
-            else {
-                transitionContext.containerView.addSubview(toView)
-            }
-            
-            toView.transform = CGAffineTransform(translationX: -width , y: 0)
-            
-            UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-                toView.transform = .identity
-                fromView.transform = CGAffineTransform(translationX: width, y: 0)
-            }) { _ in
-                toView.transform = .identity
-                fromView.transform = .identity
-                
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            }
-        }
-    }
-    
     public func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactiveTransition
     }
