@@ -30,7 +30,7 @@ open class UISlidingNavigationController: UINavigationController {
     open override func loadView() {
         super.loadView()
         
-        view.addGestureRecognizer(UIScreenEdgePanGestureRecognizer(target: self, action: #selector(didPan)).apply {
+        view.addGestureRecognizer(UIScreenEdgePanGestureRecognizer(target: self, action: #selector(didEdgePan)).apply {
             $0.maximumNumberOfTouches = 1
             $0.edges = UIApplication.shared.leftToRightLayoutDirection ? .left : .right
         })
@@ -39,7 +39,7 @@ open class UISlidingNavigationController: UINavigationController {
     }
     
     @objc
-    private func didPan(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+    private func didEdgePan(_ recognizer: UIScreenEdgePanGestureRecognizer) {
         guard let view = recognizer.view else {
             interactiveTransition = nil
             return
