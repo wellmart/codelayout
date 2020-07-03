@@ -29,13 +29,12 @@ open class UISlidingNavigationController: UINavigationController {
     
     open override func loadView() {
         super.loadView()
+        delegate = self
         
         view.addGestureRecognizer(UIScreenEdgePanGestureRecognizer(target: self, action: #selector(didEdgePan)).apply {
             $0.maximumNumberOfTouches = 1
             $0.edges = UIApplication.shared.leftToRightLayoutDirection ? .left : .right
         })
-        
-        delegate = self
     }
     
     @objc
