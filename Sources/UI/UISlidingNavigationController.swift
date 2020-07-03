@@ -24,8 +24,8 @@
 
 import UIKit
 
-public final class UIPoppingNavigationController: UINavigationController {
-    public final class AnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
+public final class UISlidingNavigationController: UINavigationController {
+    public final class SlidingTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
         private let operation: Operation
         
         public init(operation: Operation) {
@@ -111,12 +111,12 @@ public final class UIPoppingNavigationController: UINavigationController {
     }
 }
 
-extension UIPoppingNavigationController: UINavigationControllerDelegate {
+extension UISlidingNavigationController: UINavigationControllerDelegate {
     public func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactiveTransition
     }
     
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return AnimatedTransitioning(operation: operation)
+        return SlidingTransitioning(operation: operation)
     }
 }

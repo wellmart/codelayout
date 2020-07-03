@@ -36,7 +36,7 @@ public extension UIWindow {
             preconditionFailure("The appearance was not specified")
         }
         
-        self.rootViewController = UIPoppingNavigationController(rootViewController: rootViewController).apply {
+        self.rootViewController = UISlidingNavigationController(rootViewController: rootViewController).apply {
             appearance.apply(on: $0.navigationBar)
         }
         
