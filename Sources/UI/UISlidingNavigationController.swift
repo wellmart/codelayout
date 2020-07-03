@@ -116,6 +116,11 @@ extension UISlidingNavigationController: UINavigationControllerDelegate {
     }
     
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        
+        toVC.beginAppearanceTransition(true, animated: true)
+        fromVC.beginAppearanceTransition(false, animated: true)
+        
         return SlidingTransitioning(operation: operation)
     }
 }
