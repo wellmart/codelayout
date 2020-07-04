@@ -32,22 +32,22 @@ public enum LayoutDimension {
     case fullHeight
     
     @inlinable
-    public func calculate(in bounds: CGRect = UIScreen.main.bounds) -> CGFloat {
+    public func calculate(in rect: CGRect = UIScreen.main.bounds) -> CGFloat {
         switch self {
-            case let .absolute(value):
-                return value
+        case let .absolute(value):
+            return value
             
-            case let .fractionalWidth(value):
-                return bounds.width * value
+        case let .fractionalWidth(value):
+            return rect.width * value
             
-            case let .fractionalHeight(value):
-                return bounds.height * value
+        case let .fractionalHeight(value):
+            return rect.height * value
             
-            case .fullWidth:
-                return bounds.width
+        case .fullWidth:
+            return rect.width
             
-            case .fullHeight:
-                return bounds.height
+        case .fullHeight:
+            return rect.height
         }
     }
 }

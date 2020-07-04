@@ -38,7 +38,6 @@ public protocol UIWindowAppearance {
 public extension UIWindowAppearance {
     @inlinable
     func apply(on window: UIWindow) {
-        //window.backgroundColor = backgroundColor
         window.tintColor = tintColor
     }
     
@@ -66,7 +65,6 @@ public extension UIWindowAppearance {
         collectionView.backgroundColor = backgroundColor
         collectionView.showsVerticalScrollIndicator = false
         collectionView.alwaysBounceVertical = true
-        collectionView.clipsToBounds = false
     }
     
     @inlinable
