@@ -26,6 +26,16 @@ import UIKit
 
 public extension UIViewController {
     @inlinable
+    func enableInteractivePopGesture() {
+        guard let recognizer = navigationController?.interactivePopGestureRecognizer else {
+            return
+        }
+        
+        recognizer.isEnabled = true
+        recognizer.delegate = nil
+    }
+    
+    @inlinable
     func closestParent<T: UIViewController>(of type: T.Type) -> T? {
         guard let parent = parent else {
             return nil
