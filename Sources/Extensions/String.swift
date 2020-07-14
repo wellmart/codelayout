@@ -26,6 +26,13 @@ import UIKit
 
 public extension String {
     @inlinable
+    func lineSpaced(_ lineSpacing: CGFloat) -> NSAttributedString {
+        return NSAttributedString(string: self, attributes: [.paragraphStyle: NSMutableParagraphStyle().apply {
+            $0.lineSpacing = lineSpacing
+        }])
+    }
+    
+    @inlinable
     func strikethrough() -> NSAttributedString {
         return NSMutableAttributedString(string: self).apply {
             $0.addAttribute(NSAttributedString.Key.strikethroughStyle,
