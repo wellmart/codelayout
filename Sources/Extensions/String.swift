@@ -26,8 +26,9 @@ import UIKit
 
 public extension String {
     @inlinable
-    func lineSpaced(_ lineSpacing: CGFloat) -> NSAttributedString {
+    func lineSpaced(_ lineSpacing: CGFloat, alignment: NSTextAlignment = .left) -> NSAttributedString {
         return NSAttributedString(string: self, attributes: [.paragraphStyle: NSMutableParagraphStyle().apply {
+            $0.alignment = alignment
             $0.lineSpacing = lineSpacing
         }])
     }
