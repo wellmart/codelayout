@@ -26,7 +26,7 @@ import UIKit
 
 public extension String {
     @inlinable
-    func lineSpaced(_ lineSpacing: CGFloat, alignment: NSTextAlignment = .left) -> NSAttributedString {
+    func lineSpacing(_ lineSpacing: CGFloat, alignment: NSTextAlignment = .left) -> NSAttributedString {
         return NSAttributedString(string: self, attributes: [.paragraphStyle: NSMutableParagraphStyle().apply {
             $0.alignment = alignment
             $0.lineSpacing = lineSpacing
@@ -35,10 +35,6 @@ public extension String {
     
     @inlinable
     func strikethrough() -> NSAttributedString {
-        return NSMutableAttributedString(string: self).apply {
-            $0.addAttribute(NSAttributedString.Key.strikethroughStyle,
-                            value: NSUnderlineStyle.single.rawValue | NSUnderlineStyle.byWord.rawValue,
-                            range: NSMakeRange(0, count))
-        }
+        return NSAttributedString(string: self, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue | NSUnderlineStyle.byWord.rawValue])
     }
 }
