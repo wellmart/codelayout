@@ -34,4 +34,10 @@ public extension CGFloat {
     var dp: CGFloat {
         return UIScreen.main.bounds.width / .baseDPI * self
     }
+    
+    @inlinable
+    func round(places: Int) -> CGFloat {
+        let divisor = pow(10, CGFloat(places))
+        return (self * divisor).rounded() / divisor
+    }
 }
