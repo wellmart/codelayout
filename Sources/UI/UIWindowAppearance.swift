@@ -73,7 +73,6 @@ public extension UIWindowAppearance {
         label.textColor = textColor
     }
     
-    @inlinable
     func apply(on button: UIButton) {
         let highlightedImage = tintColor.image()
         
@@ -132,7 +131,6 @@ public extension UIWindowAppearance {
         }
     }
     
-    @inlinable
     func createNavigationBarButton(title: String, font: UIFont? = nil, baselineOffset: CGFloat = 0, target: AnyObject?, action: Selector) -> UIBarButtonItem? {
         let attributes: [NSAttributedString.Key: Any] = [.font: font ?? self.font, .foregroundColor: textColor, .baselineOffset: baselineOffset]
         
@@ -144,7 +142,6 @@ public extension UIWindowAppearance {
         }
     }
     
-    @inlinable
     func createTabBarButton(title: String, font: UIFont, badgeFont: UIFont? = nil, positionVertical: CGFloat = 0) -> UITabBarItem {
         let tabBarItem = UITabBarItem(title: title, image: nil, selectedImage: nil).apply {
             $0.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -positionVertical)

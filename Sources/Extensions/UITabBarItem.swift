@@ -27,6 +27,6 @@ import UIKit
 public extension UITabBarItem {
     @inlinable
     func setBadgeNumber(_ value: Int) {
-        badgeValue = value > 0 ? "\(value)" : nil
+        badgeValue = value > 0 ? String(value) : nil
     }
 }

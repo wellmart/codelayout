@@ -25,7 +25,6 @@
 import UIKit
 
 public extension UICollectionView {
-    @inlinable
     func dequeue<T: UICollectionViewCell & ViewReusable>(_ type: T.Type, for indexPath: IndexPath, with viewModel: T.T?) -> T {
         let cell = dequeueReusableCell(withReuseIdentifier: type.identifier, for: indexPath) as! T
         
