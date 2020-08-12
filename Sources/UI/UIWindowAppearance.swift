@@ -51,8 +51,8 @@ public extension UIWindowAppearance {
     }
     
     @inlinable
-    func apply(on navigationBar: UINavigationBar) {
-        navigationBar.barTintColor = backgroundColor
+    func apply(on navigationBar: UINavigationBar, barTintColor: UIColor? = nil) {
+        navigationBar.barTintColor = barTintColor ?? backgroundColor
         navigationBar.titleTextAttributes = [.font: font, .foregroundColor: textColor]
         navigationBar.isTranslucent = true
         navigationBar.shadowImage = UIImage()
