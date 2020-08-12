@@ -51,8 +51,8 @@ public extension UIWindowAppearance {
     }
     
     @inlinable
-    func apply(on navigationBar: UINavigationBar, barTintColor: UIColor? = nil) {
-        navigationBar.barTintColor = barTintColor ?? backgroundColor
+    func apply(on navigationBar: UINavigationBar, barTintColor: UIColor) {
+        navigationBar.barTintColor = barTintColor
         navigationBar.titleTextAttributes = [.font: font, .foregroundColor: textColor]
         navigationBar.isTranslucent = true
         navigationBar.shadowImage = UIImage()
@@ -110,7 +110,7 @@ public extension UIWindowAppearance {
             apply(on: tabBar)
             
         case let navigationBar as UINavigationBar:
-            apply(on: navigationBar)
+            apply(on: navigationBar, barTintColor: backgroundColor)
             
         case let collectionView as UICollectionView:
             apply(on: collectionView)
