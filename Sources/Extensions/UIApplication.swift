@@ -43,6 +43,24 @@ public extension UIApplication {
     }
     
     @inlinable
+    static func openShare(appId: String, message: String, viewController: UIViewController) {
+        guard let url = URL(string: "https://apps.apple.com/app/\(appId)") else {
+            return
+        }
+        
+        let activityViewController = UIActivityViewController(activityItems: [message, url], applicationActivities: nil).apply {
+            $0.excludedActivityTypes = [
+                .addToReadingList,
+                .airDrop,
+                .print,
+                .saveToCameraRoll
+            ]
+        }
+        
+        viewController.present(activityViewController, animated: true)
+    }
+    
+    @inlinable
     var environment: Environment {
         #if DEBUG || targetEnvironment(simulator)
         return .debug
