@@ -25,6 +25,21 @@
 import UIKit
 import Adrenaline
 
+@available(iOS 10, *)
+public extension UIView {
+    static func shake(_ view: UIView, duration: TimeInterval = 0.5, translation: CGFloat = 10) {
+        let propertyAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.3) {
+            view.transform = CGAffineTransform(translationX: translation, y: 0)
+        }
+        
+        propertyAnimator.addAnimations({
+            view.transform = CGAffineTransform(translationX: 0, y: 0)
+        }, delayFactor: 0.2)
+        
+        propertyAnimator.startAnimation()
+    }
+}
+
 @available(iOS 9, *)
 public extension UIView {
     @inlinable
@@ -240,7 +255,6 @@ public extension UIView {
 }
 
 public extension UIView {
-    @inlinable
     @discardableResult
     func addSublayer<T: CALayer>(_ type: T.Type, apply work: (T) -> Void) -> T {
         return T().apply {
@@ -251,7 +265,6 @@ public extension UIView {
         }
     }
     
-    @inlinable
     func removeAllSublayers() {
         guard let sublayers = layer.sublayers else {
             return
@@ -264,7 +277,6 @@ public extension UIView {
 }
 
 public extension UIView {
-    @inlinable
     @discardableResult
     func addSubview<T: UIView>(_ type: T.Type, apply work: (T) -> Void) -> T {
         return T().apply {
@@ -277,7 +289,6 @@ public extension UIView {
         }
     }
     
-    @inlinable
     @discardableResult
     func addSubview<T: UIView>(_ view: T, apply work: (T) -> Void) -> T {
         return view.apply {
@@ -292,7 +303,6 @@ public extension UIView {
 }
 
 public extension UIView {
-    @inlinable
     @discardableResult
     func addPanGesture(target: Any, action: Selector?, delegate: UIGestureRecognizerDelegate? = nil) -> UIPanGestureRecognizer {
         let recognizer = UIPanGestureRecognizer(target: target, action: action).apply {
@@ -304,7 +314,6 @@ public extension UIView {
         return recognizer
     }
     
-    @inlinable
     @discardableResult
     func addTapGesture(target: Any, action: Selector?, delegate: UIGestureRecognizerDelegate? = nil) -> UITapGestureRecognizer {
         let recognizer = UITapGestureRecognizer(target: target, action: action).apply {
