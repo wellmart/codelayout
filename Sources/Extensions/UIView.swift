@@ -33,7 +33,7 @@ public extension UIView {
         }
         
         propertyAnimator.addAnimations({
-            view.transform = CGAffineTransform(translationX: 0, y: 0)
+            view.transform = .identity
         }, delayFactor: 0.2)
         
         propertyAnimator.startAnimation()
