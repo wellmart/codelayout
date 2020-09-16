@@ -25,7 +25,6 @@
 import UIKit
 import Adrenaline
 
-@available(iOS 10, *)
 public extension UIView {
     static func shake(_ view: UIView, duration: TimeInterval = 0.5, translation: CGFloat = 10) {
         let propertyAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.3) {
@@ -40,7 +39,6 @@ public extension UIView {
     }
 }
 
-@available(iOS 9, *)
 public extension UIView {
     @inlinable
     var safeAreaTopAnchor: NSLayoutYAxisAnchor {
@@ -97,7 +95,6 @@ public extension UIView {
     }
 }
 
-@available(iOS 9, *)
 public extension UIView {
     @inlinable
     @discardableResult

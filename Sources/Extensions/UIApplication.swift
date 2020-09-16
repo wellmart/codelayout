@@ -32,7 +32,6 @@ public extension UIApplication {
     }
     
     @inlinable
-    @available(iOS 10, *)
     static func openSettings() {
         guard let url = URL(string: openSettingsURLString),
               shared.canOpenURL(url) else {

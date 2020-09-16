@@ -47,22 +47,9 @@ public extension UIColor {
     func image(_ size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
         let rect = CGRect(origin: .zero, size: size)
         
-        if #available(iOS 10, *) {
-            return UIGraphicsImageRenderer(size: size).image { context in
-                setFill()
-                context.fill(rect)
-            }
+        return UIGraphicsImageRenderer(size: size).image { context in
+            setFill()
+            context.fill(rect)
         }
-        
-        UIGraphicsBeginImageContext(size)
-        let context = UIGraphicsGetCurrentContext()
-        
-        context?.setFillColor(cgColor)
-        context?.fill(rect)
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image!
     }
 }

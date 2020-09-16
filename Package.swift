@@ -29,7 +29,7 @@ import PackageDescription
 let package = Package(
     name: "CodeLayout",
     platforms: [
-        .iOS(.v8)
+        .iOS(.v10)
     ],
     products: [
         .library(
