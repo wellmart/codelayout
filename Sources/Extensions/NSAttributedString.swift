@@ -24,17 +24,17 @@
 
 import UIKit
 
-public extension String {
+public extension NSAttributedString {
     @inlinable
-    func lineSpacing(_ lineSpacing: CGFloat, alignment: NSTextAlignment = .left) -> NSAttributedString {
-        return NSAttributedString(string: self, attributes: [.paragraphStyle: NSMutableParagraphStyle().apply {
+    static func lineSpacing(string: String, spacing: CGFloat, alignment: NSTextAlignment = .left) -> NSAttributedString {
+        return NSAttributedString(string: string, attributes: [.paragraphStyle: NSMutableParagraphStyle().apply {
             $0.alignment = alignment
-            $0.lineSpacing = lineSpacing
+            $0.lineSpacing = spacing
         }])
     }
     
     @inlinable
-    func strikethrough() -> NSAttributedString {
-        return NSAttributedString(string: self, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue | NSUnderlineStyle.byWord.rawValue])
+    static func strikethrough(string: String) -> NSAttributedString {
+        return NSAttributedString(string: string, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue | NSUnderlineStyle.byWord.rawValue])
     }
 }
