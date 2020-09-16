@@ -28,10 +28,6 @@ import Adrenaline
 public enum ImpactUtils {
     @inlinable
     public static func error() {
-        guard #available(iOS 10, *) else {
-            return
-        }
-        
         DispatchQueue.main.async {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
         }
@@ -39,10 +35,6 @@ public enum ImpactUtils {
     
     @inlinable
     public static func selectionChanged() {
-        guard #available(iOS 10, *) else {
-            return
-        }
-        
         DispatchQueue.main.async {
             UISelectionFeedbackGenerator().selectionChanged()
         }
@@ -50,10 +42,6 @@ public enum ImpactUtils {
     
     @inlinable
     public static func success() {
-        guard #available(iOS 10, *) else {
-            return
-        }
-        
         DispatchQueue.main.async {
             UINotificationFeedbackGenerator().notificationOccurred(.success)
         }
