@@ -30,7 +30,6 @@ public extension CGFloat {
         return 463
     }
     
-    @inlinable
     var dp: CGFloat {
         return UIScreen.main.bounds.width / .baseDPI * self
     }

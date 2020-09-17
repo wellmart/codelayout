@@ -31,7 +31,6 @@ public enum LayoutDimension {
     case fullWidth
     case fullHeight
     
-    @inlinable
     public func calculate(in rect: CGRect = UIScreen.main.bounds) -> CGFloat {
         switch self {
         case let .absolute(value):

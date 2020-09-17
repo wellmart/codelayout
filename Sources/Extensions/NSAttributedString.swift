@@ -38,3 +38,14 @@ public extension NSAttributedString {
         return NSAttributedString(string: string, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue | NSUnderlineStyle.byWord.rawValue])
     }
 }
+
+public extension Optional where Wrapped == NSAttributedString {
+    @inlinable
+    static func strikethrough(string: String?) -> NSAttributedString? {
+        guard let string = string else {
+            return nil
+        }
+        
+        return .strikethrough(string: string)
+    }
+}

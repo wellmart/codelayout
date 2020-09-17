@@ -59,7 +59,6 @@ public extension UIApplication {
         viewController.present(activityViewController, animated: true)
     }
     
-    @inlinable
     var environment: Environment {
         #if DEBUG || targetEnvironment(simulator)
         return .debug
@@ -89,7 +88,6 @@ public extension UIApplication {
         return userInterfaceLayoutDirection != .rightToLeft
     }
     
-    @inlinable
     var preferredContentMultiplier: CGFloat {
         switch preferredContentSizeCategory {
         case .accessibilityExtraExtraExtraLarge:
