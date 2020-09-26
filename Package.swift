@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 
 //
 //  CodeLayout
@@ -38,7 +38,7 @@ let package = Package(
             targets: ["CodeLayout"])
     ],
     dependencies: [
-        .package(url: "https://github.com/wellmart/adrenaline.git", .branch("master"))
+        .package(name: "Adrenaline", url: "https://github.com/wellmart/adrenaline.git", .branch("master"))
     ],
     targets: [
         .target(
