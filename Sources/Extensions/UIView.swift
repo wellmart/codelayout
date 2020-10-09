@@ -99,7 +99,11 @@ public extension UIView {
     @inlinable
     @discardableResult
     func anchor(top constant: CGFloat) -> NSLayoutConstraint {
-        return anchor(top: superview!.topAnchor, constant: constant)
+        guard let superview = superview else {
+            preconditionFailure("The superview was not specified")
+        }
+        
+        return anchor(top: superview.topAnchor, constant: constant)
     }
     
     @inlinable
@@ -113,7 +117,11 @@ public extension UIView {
     @inlinable
     @discardableResult
     func anchor(trailing constant: CGFloat) -> NSLayoutConstraint {
-        return anchor(trailing: superview!.trailingAnchor, constant: constant)
+        guard let superview = superview else {
+            preconditionFailure("The superview was not specified")
+        }
+        
+        return anchor(trailing: superview.trailingAnchor, constant: constant)
     }
     
     @inlinable
@@ -127,7 +135,11 @@ public extension UIView {
     @inlinable
     @discardableResult
     func anchor(right constant: CGFloat) -> NSLayoutConstraint {
-        return anchor(right: superview!.rightAnchor, constant: constant)
+        guard let superview = superview else {
+            preconditionFailure("The superview was not specified")
+        }
+        
+        return anchor(right: superview.rightAnchor, constant: constant)
     }
     
     @inlinable
@@ -141,7 +153,11 @@ public extension UIView {
     @inlinable
     @discardableResult
     func anchor(bottom constant: CGFloat) -> NSLayoutConstraint {
-        return anchor(bottom: superview!.bottomAnchor, constant: constant)
+        guard let superview = superview else {
+            preconditionFailure("The superview was not specified")
+        }
+        
+        return anchor(bottom: superview.bottomAnchor, constant: constant)
     }
     
     @inlinable
@@ -155,7 +171,11 @@ public extension UIView {
     @inlinable
     @discardableResult
     func anchor(leading constant: CGFloat) -> NSLayoutConstraint {
-        return anchor(leading: superview!.leadingAnchor, constant: constant)
+        guard let superview = superview else {
+            preconditionFailure("The superview was not specified")
+        }
+        
+        return anchor(leading: superview.leadingAnchor, constant: constant)
     }
     
     @inlinable
@@ -169,7 +189,11 @@ public extension UIView {
     @inlinable
     @discardableResult
     func anchor(left constant: CGFloat) -> NSLayoutConstraint {
-        return anchor(left: superview!.leftAnchor, constant: constant)
+        guard let superview = superview else {
+            preconditionFailure("The superview was not specified")
+        }
+        
+        return anchor(left: superview.leftAnchor, constant: constant)
     }
     
     @inlinable
@@ -215,7 +239,11 @@ public extension UIView {
     @inlinable
     @discardableResult
     func anchor(centerX constant: CGFloat) -> NSLayoutConstraint {
-        return anchor(centerX: superview!.centerXAnchor, constant: constant)
+        guard let superview = superview else {
+            preconditionFailure("The superview was not specified")
+        }
+        
+        return anchor(centerX: superview.centerXAnchor, constant: constant)
     }
     
     @inlinable
@@ -229,7 +257,11 @@ public extension UIView {
     @inlinable
     @discardableResult
     func anchor(centerY constant: CGFloat) -> NSLayoutConstraint {
-        return anchor(centerY: superview!.centerYAnchor, constant: constant)
+        guard let superview = superview else {
+            preconditionFailure("The superview was not specified")
+        }
+        
+        return anchor(centerY: superview.centerYAnchor, constant: constant)
     }
     
     @inlinable
@@ -245,8 +277,12 @@ public extension UIView {
     @inlinable
     @discardableResult
     func addConstraint(attribute attribute1: NSLayoutConstraint.Attribute, relatedBy relation: NSLayoutConstraint.Relation = .equal, toItem item: UIView? = nil, toAttribute attribute2: NSLayoutConstraint.Attribute = .notAnAttribute, multiplier: CGFloat = 1, constant: CGFloat = 0) -> NSLayoutConstraint {
+        guard let superview = superview else {
+            preconditionFailure("The superview was not specified")
+        }
+        
         return NSLayoutConstraint(item: self, attribute: attribute1, relatedBy: relation, toItem: item, attribute: attribute2, multiplier: multiplier, constant: constant).apply {
-            superview?.addConstraint($0)
+            superview.addConstraint($0)
         }
     }
 }
