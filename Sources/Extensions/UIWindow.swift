@@ -33,7 +33,7 @@ public extension UIWindow {
         self.init(frame: UIScreen.main.bounds)
         
         guard let appearance = UIWindow.appearance else {
-            preconditionFailure("The appearance was not specified")
+            preconditionFailure("Appearance was not specified")
         }
         
         self.rootViewController = UINavigationController(rootViewController: rootViewController).apply {
