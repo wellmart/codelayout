@@ -37,6 +37,7 @@ public extension UIWindow {
         }
         
         self.rootViewController = UINavigationController(rootViewController: rootViewController).apply {
+            $0.view.backgroundColor = appearance.backgroundColor
             appearance.apply(on: $0.navigationBar)
         }
         
