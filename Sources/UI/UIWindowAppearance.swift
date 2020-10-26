@@ -145,16 +145,14 @@ public extension UIWindowAppearance {
     func createTabBarButton(title: String, font: UIFont, badgeFont: UIFont? = nil, positionVertical: CGFloat = 0) -> UITabBarItem {
         let tabBarItem = UITabBarItem(title: title, image: nil, selectedImage: nil).apply {
             $0.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -positionVertical)
+            $0.badgeColor = tintColor
+            
             $0.setTitleTextAttributes([.font: font], for: .normal)
         }
         
-        if #available(iOS 10, *) {
-            tabBarItem.badgeColor = tintColor
-            
-            if let badgeFont = badgeFont {
-                tabBarItem.setBadgeTextAttributes([.font: badgeFont], for: .normal)
-                tabBarItem.setBadgeTextAttributes([.font: badgeFont], for: .selected)
-            }
+        if let badgeFont = badgeFont {
+            tabBarItem.setBadgeTextAttributes([.font: badgeFont], for: .normal)
+            tabBarItem.setBadgeTextAttributes([.font: badgeFont], for: .selected)
         }
         
         return tabBarItem

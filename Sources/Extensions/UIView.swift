@@ -41,62 +41,6 @@ public extension UIView {
 
 public extension UIView {
     @inlinable
-    var safeAreaTopAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11, *) {
-            return safeAreaLayoutGuide.topAnchor
-        }
-        
-        return topAnchor
-    }
-    
-    @inlinable
-    var safeAreaTrailingAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11, *) {
-            return safeAreaLayoutGuide.trailingAnchor
-        }
-        
-        return trailingAnchor
-    }
-    
-    @inlinable
-    var safeAreaRightAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11, *) {
-            return safeAreaLayoutGuide.rightAnchor
-        }
-        
-        return rightAnchor
-    }
-    
-    @inlinable
-    var safeAreaBottomAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11, *) {
-            return safeAreaLayoutGuide.bottomAnchor
-        }
-        
-        return bottomAnchor
-    }
-    
-    @inlinable
-    var safeAreaLeadingAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11, *) {
-            return safeAreaLayoutGuide.leadingAnchor
-        }
-        
-        return leadingAnchor
-    }
-    
-    @inlinable
-    var safeAreaLeftAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11, *) {
-            return safeAreaLayoutGuide.leftAnchor
-        }
-        
-        return leftAnchor
-    }
-}
-
-public extension UIView {
-    @inlinable
     @discardableResult
     func anchor(top constant: CGFloat) -> NSLayoutConstraint {
         guard let superview = superview else {
