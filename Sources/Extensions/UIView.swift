@@ -37,6 +37,13 @@ public extension UIView {
         
         propertyAnimator.startAnimation()
     }
+    
+    @inlinable
+    func layoutIfNeededWithoutAnimation() {
+        UIView.performWithoutAnimation {
+            layoutIfNeeded()
+        }
+    }
 }
 
 public extension UIView {
