@@ -27,6 +27,7 @@ import UIKit
 public enum LayoutDimension {
     case fullWidth
     case fullHeight
+    case fittingHeight(_ view: UIView)
     case fractionalWidth(_ value: CGFloat)
     case fractionalHeight(_ value: CGFloat)
     case absolute(_ value: CGFloat)
@@ -38,6 +39,9 @@ public enum LayoutDimension {
             
         case .fullHeight:
             return rect.height
+            
+        case let .fittingHeight(view):
+            return view.systemLayoutSizeFitting(.zero).height
             
         case let .fractionalWidth(value):
             return rect.width * value
