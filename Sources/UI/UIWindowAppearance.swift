@@ -71,6 +71,7 @@ public extension UIWindowAppearance {
     func apply(on label: UILabel) {
         label.font = font
         label.textColor = textColor
+        label.adjustsFontForContentSizeCategory = true
     }
     
     func apply(on button: UIButton) {

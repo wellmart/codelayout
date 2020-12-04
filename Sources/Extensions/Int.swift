@@ -27,6 +27,6 @@ import UIKit
 public extension Int {
     @inlinable
     var dp: CGFloat {
-        return CGFloat(self).dp
+        return UIScreen.main.bounds.width / .baseDPI * CGFloat(self)
     }
 }

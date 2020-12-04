@@ -29,8 +29,4 @@ public extension CGFloat {
     static var baseDPI: CGFloat {
         return 463
     }
-    
-    var dp: CGFloat {
-        return UIScreen.main.bounds.width / .baseDPI * self
-    }
 }

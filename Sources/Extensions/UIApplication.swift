@@ -87,44 +87,4 @@ public extension UIApplication {
     var leftToRightLayoutDirection: Bool {
         return userInterfaceLayoutDirection != .rightToLeft
     }
-    
-    var preferredContentMultiplier: CGFloat {
-        switch preferredContentSizeCategory {
-        case .accessibilityExtraExtraExtraLarge:
-            return 1.4375
-            
-        case .accessibilityExtraExtraLarge:
-            return 1.375
-            
-        case .accessibilityExtraLarge:
-            return 1.3125
-            
-        case .accessibilityLarge:
-            return 1.25
-            
-        case .accessibilityMedium:
-            return 1.1875
-            
-        case .extraExtraExtraLarge:
-            return 1.1875
-            
-        case .extraExtraLarge:
-            return 1.125
-            
-        case .extraLarge:
-            return 1.0625
-            
-        case .medium:
-            return 0.9375
-            
-        case .small:
-            return 0.875
-            
-        case .extraSmall:
-            return 0.8125
-            
-        default:
-            return 1
-        }
-    }
 }
