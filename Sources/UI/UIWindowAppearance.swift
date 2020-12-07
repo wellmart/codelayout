@@ -77,14 +77,14 @@ public extension UIWindowAppearance {
     func apply(on button: UIButton) {
         let highlightedImage = tintColor.image()
         
+        button.setBackgroundImage(highlightedImage, for: .highlighted)
+        button.setBackgroundImage(highlightedImage, for: .selected)
+        button.setBackgroundImage(highlightedImage, for: [.highlighted, .selected])
+        
         button.setTitleColor(textColor, for: .normal)
         button.setTitleColor(highlightedTextColor, for: .highlighted)
         button.setTitleColor(highlightedTextColor, for: .selected)
         button.setTitleColor(highlightedTextColor, for: [.highlighted, .selected])
-        
-        button.setBackgroundImage(highlightedImage, for: .highlighted)
-        button.setBackgroundImage(highlightedImage, for: .selected)
-        button.setBackgroundImage(highlightedImage, for: [.highlighted, .selected])
         
         button.corner(radius: buttonCornerRadius)
     }
